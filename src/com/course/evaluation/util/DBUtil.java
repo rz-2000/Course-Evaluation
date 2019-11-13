@@ -23,9 +23,9 @@ public class DBUtil {
         try {
             //读取配置文件，加载JDBC四大参数
             drivatename = "com.mysql.jdbc.Driver";
-            url = "jdbc:mysql://localhost:3306/apsfc";
+            url = "jdbc:mysql://localhost:3306/evaluation_course";
             username = "root";
-            password = "weekday";
+            password = "root";
 //			Properties config = new Properties();
 //			config.load(new FileReader(new File("JDBC.conf")));
 //			drivatename = config.getProperty("drivername");
