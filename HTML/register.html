@@ -26,54 +26,57 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
-
+	
 </head>
 
-<body id="login_bg">
+<body id="register_bg">
 	
 	<nav id="menu" class="fake_menu"></nav>
-	
-	<div id="preloader">
-		<div data-loader="circle-side"></div>
-	</div>
-	<!-- End Preload -->
 	
 	<div id="login">
 		<aside>
 			<figure>
 				<a href="index.html"><h3>海大优选</h3></a>
 			</figure>
-			  <form>
+			
+			<form autocomplete="off">
+				<div class="form-group">
+					<input class="form-control" name="user_id" type="text" placeholder="账号(用户ID)">
+					<i class="ti-user"></i>
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="name" type="text" placeholder="真实姓名">
+					<i class="ti-user"></i>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="student_id" type="text" placeholder="学号">
+					<i class="ti-user"></i>
+				</div>
 				
 				<div class="form-group">
-					<input type="email" class="form-control" name="email" id="email" placeholder="账号">
-					<i class="icon_mail_alt"></i>
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
+					<input class="form-control" type="password" id="password1" placeholder="密码">
 					<i class="icon_lock_alt"></i>
 				</div>
-				<div class="clearfix add_bottom_30">
-					<div class="checkboxes float-left">
-						<label class="container_check">记住我
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>
-					</div>
-					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">忘记密码</a></div>
+				<div class="form-group">
+					<input class="form-control" type="password" id="password2" placeholder="确认密码">
+					<i class="icon_lock_alt"></i>
 				</div>
-				<a href="#0" class="btn_1 rounded full-width">登录</a>
-				<div class="text-center add_top_10">没有账号？ <strong><a href="register.html">注册</a></strong></div>
+				<div id="pass-info" class="clearfix"></div>
+				<a href="#0" class="btn_1 rounded full-width">注册!</a>
+				<div class="text-center add_top_10">已经有账号了? <strong><a href="login.html">登录</a></strong></div>
 			</form>
 			<div class="copy">© 2019 海大优选</div>
 		</aside>
 	</div>
 	<!-- /login -->
-		
+	
 	<!-- COMMON SCRIPTS -->
     <script src="js/common_scripts.js"></script>
 	<script src="js/functions.js"></script>
 	<script src="assets/validate.js"></script>
+	
+	<!-- SPECIFIC SCRIPTS -->
+	<script src="js/pw_strenght.js"></script>	
   
 </body>
 </html>
