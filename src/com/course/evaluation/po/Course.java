@@ -15,11 +15,12 @@ public class Course {
     private Integer twoStar;
     private Integer oneStar;
     private Integer total;
+    private float score;
 
     public Course() {
     }
 
-    public Course(Integer id, String name, String type, String major, String teacher, Integer fiveStar, Integer fourStar, Integer threeStar, Integer twoStar, Integer oneStar, Integer total) {
+    public Course(Integer id, String name, String type, String major, String teacher, Integer fiveStar, Integer fourStar, Integer threeStar, Integer twoStar, Integer oneStar, Integer total, float score) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -31,6 +32,7 @@ public class Course {
         this.twoStar = twoStar;
         this.oneStar = oneStar;
         this.total = total;
+        this.score = score;
     }
 
     public Integer getId() {
@@ -119,5 +121,13 @@ public class Course {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
     }
 }
