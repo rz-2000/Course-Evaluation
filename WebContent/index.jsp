@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*,java.text.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -204,45 +205,14 @@
             <div class="billboard-bd">
                 <table>
                     <tbody>
+                    <c:set var="count" value="0"></c:set>
+                    <c:forEach items="${bestCourseList.list}" var="item">
                     <tr>
-                        <td class="order">1</td>
-                        <td class="title"><a href="#">计算机网络</a></td>
+                        <td class="order">${count+1}</td>
+                        <td class="title"><a href="#">${item.name}</a></td>
                     </tr>
-                    <tr>
-                        <td class="order">2</td>
-                        <td class="title"><a href="#">编译原理</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">4</td>
-                        <td class="title"><a href="#">计算机网络</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">4</td>
-                        <td class="title"><a href="#">线性代数</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">5</td>
-                        <td class="title"><a href="#">高等数学</a></td>
-                    </tr> <tr>
-                        <td class="order">6</td>
-                        <td class="title"><a href="#">大学生职业规划</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">7</td>
-                        <td class="title"><a href="#">高级口语</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">8</td>
-                        <td class="title"><a href="#">软件测试与分析</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">9</td>
-                        <td class="title"><a href="#">软件工程</a></td>
-                    </tr>
-                    <tr>
-                        <td class="order">10</td>
-                        <td class="title"><a href="#">数据结构</a></td>
-                    </tr>
+                        <c:set var="count" value="${count+1}"></c:set>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -260,102 +230,22 @@
                     <div class="line"></div>
                 </div>
                     <div class="hot-comment-content">
+                        <c:set var="count" value="0"></c:set>
+                        <c:forEach items="${hotCourseList.list}" var="item">
                         <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
+                            <a href="#"><img src="${item.image}" alt="" class="cover"></a>
+                            <a href="" class="card-hd">${item.name}</a>
                             <ul class="star-list">
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">3</li>
+                                <li class="score">${item.score}</li>
                             </ul>
                         </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">4</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">5</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">6</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">7</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">8</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">9</li>
-                            </ul>
-                        </div>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="images/temp.jpg" alt="" class="cover"></a>
-                            <a href="" class="card-hd">软件工程</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">9.5</li>
-                            </ul>
-                        </div>
+                            <c:set var="count" value="${count+1}"></c:set>
+                        </c:forEach>
                     </div>
             </div>
             <div class="col-md-4">
