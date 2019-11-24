@@ -1,7 +1,7 @@
 package com.course.evaluation.po;
 
 import java.util.Date;
-
+import java.lang.String;
 /**
  * @author 曾哲
  */
@@ -11,13 +11,13 @@ public class Evaluation {
     private Integer courseId;
     private Integer star;
     private String content;
-    private Date time;
+    private String time;
     private Integer support;
 
-    public Evaluation() {
-    }
 
-    public Evaluation(Integer id, Integer userId, Integer courseId, Integer star, String content, Date time, Integer support) {
+    public Evaluation(Integer id, Integer userId, Integer courseId, Integer star, String content,
+                      String time, Integer support) {
+
         this.id = id;
         this.userId = userId;
         this.courseId = courseId;
@@ -25,6 +25,10 @@ public class Evaluation {
         this.content = content;
         this.time = time;
         this.support = support;
+    }
+
+    public Evaluation() {
+
     }
 
     public Integer getId() {
@@ -67,11 +71,9 @@ public class Evaluation {
         this.content = content;
     }
 
-    public Date getTime() {
-        return time;
-    }
+    public String getTime() { return time; }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
