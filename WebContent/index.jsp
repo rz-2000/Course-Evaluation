@@ -232,6 +232,7 @@
                     <div class="hot-comment-content">
                         <c:set var="count" value="0"></c:set>
                         <c:forEach items="${hotCourseList.list}" var="item">
+                        <c:if test="${count%5==0}"><tr></c:if>
                         <div class="hot-comment-card">
                             <a href="#"><img src="${item.image}" alt="" class="cover"></a>
                             <a href="" class="card-hd">${item.name}</a>
