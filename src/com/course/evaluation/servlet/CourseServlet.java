@@ -30,20 +30,6 @@ public class CourseServlet extends HttpServlet {
         request.getRequestDispatcher("course.jsp").forward(request,response);
     }
 
-    protected void hotCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Course> courseList;
-        courseList = courseService.findAllOrderByTotal();
-        request.setAttribute("hotCourseList", courseList);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-
-    protected void bestCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Course> courseList;
-        courseList = courseService.findAllOrderByScore();
-        request.setAttribute("bestCourseList", courseList);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -54,10 +40,6 @@ public class CourseServlet extends HttpServlet {
         String method = request.getParameter("method");
         if ("showCourse".equals(method)){
             showCourse(request, response);
-        }else if ("hotCourse".equals(method)){
-            hotCourse(request, response);
-        }else if ("bestCourse".equals(method)){
-            bestCourse(request, response);
         }
     }
 }
