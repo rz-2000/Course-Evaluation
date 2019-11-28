@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        .search-Area{
+            padding: 20px 0px;
+            background-color: #f0f3f5;
+        }
+        .search-input{
+            padding: 0 15px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            width:450px;
+            height: 40px;
+        }
+        .search-input:focus{
+            outline: none;
+        }
+        .search-button{
+            margin: 0;
+            padding: 0;
+            height:40px;
+            width:80px;
+            outline: none;
+            border: 0;
+            background-color: #3399ea;
+            color: white;
+            transition: all .5s cubic-bezier(.645,.045,.355,1);
+            border-radius: 5px;
+        }
+        .search-button:focus{
+            outline: none;
+        }
+        .search-button:hover{
+            background-color: rgba(0, 131, 234, 0.68);
+        }
+
+
+    </style>
+</head>
+<body>
+<header id="navigator">
+    <div class="nav-left">
+        <span class="nav_name">海大优选</span>
+        <span class="nav_list"><a href="index.html" >首页</a></span>
+        <span class="nav_list"><a href="#">课程</a></span>
+    </div>
+    <div class="nav-right">
+        <div id="drop-name">
+            <img src="images/duck.jpg" alt="">
+            <span>杨欧牟</span>
+        </div>
+        <div>
+            <ul id="drop-list">
+                <div class="line"></div>
+                <li><a href="#">个人中心</a></li>
+                <div class="line"></div>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<div class="search-Area">
+    <div class="container">
+        <div class="row">
+            <div class="m-auto">
+                <form action="">
+                    <input type="text" class="search-input" placeholder="请输入您想搜索的课程">
+                    <button type="submit" class="search-button">搜索</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="line"></div>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
+<script src="js/nav.js"></script>
+</body>
+</html>

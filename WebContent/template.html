@@ -4,118 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <style>
-        @font-face {
-            font-family: 'cool';
-            src:url('font/kanfu.TTF');
 
-        }
-        a {
-            color: black;
-            text-decoration: none;
-        }
-        /*正常的未被访问过的链接*/
-        a:link {
-            text-decoration: none;
-        }
-        /*已经访问过的链接*/
-        a:visited {
-            text-decoration: none;
-        }
-        /*鼠标划过(停留)的链接*/
-        a:hover {
-            text-decoration: none;
-
-        }
-        /* 正在点击的链接*/
-        a:active {
-            text-decoration: none;
-        }
-        ul, li{
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        #navigator{
-            padding: 0px 100px 0 40px;
-            background-color: #37373a;
-            height:66px;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .nav-left{
-            display: flex;
-            justify-content: center;
-        }
-
-        #navigator a{
-            color: white;
-        }
-
-        .nav_name{
-            font-family: cool;
-            font-size: 45px;
-            margin-right: 20px
-        }
-        .nav_list{
-            padding: 25px 30px;
-            font-size: 15px;
-            line-height: 20px;
-            transition: all .2s cubic-bezier(.645,.045,.355,1);
-
-        }
-        .nav_list:hover{
-            background-color: rgba(96, 100, 99, 0.5);
-        }
-        .nav-right{
-            display: flex;
-            flex-direction: column;
-            background-color: #37373a;
-        }
-        .nav-right img{
-            margin-right: 10px;
-            width:30px;
-            height:30px;
-        }
-        #drop-name{
-            padding: 18px 10px;
-            cursor: pointer;
-            transition: all .2s cubic-bezier(.645,.045,.355,1);
-        }
-        #drop-list{
-            display: none;
-            position: relative;
-            z-index: 999;
-            background-color: #37373a;
-        }
-        #drop-list li{
-            padding: 10px 5px;
-            text-align: center;
-            transition: all .2s cubic-bezier(.645,.045,.355,1);
-
-        }
-        #drop-list li:hover{
-            background-color: rgba(96, 100, 99, 0.5);
-
-        }
-
-        #drop-name:hover{
-            background-color: rgba(96, 100, 99, 0.5);
-        }
-        footer{
-            background-color: whitesmoke;
-        }
-        .copyright{
-            margin: 10px;
-            font-size: 15px;
-            color: #8c8c8c;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <header id="navigator">
@@ -146,26 +38,6 @@
         Copyright © 2019 大碗宽面 All Rights Reserved
     </div>
 </footer>
-<script>
-
-    // 导航栏下拉菜单
-    var drop_name = $("#drop-name");
-    var drop_list = $("#drop-list");
-    var flag = 0;
-    drop_name.mouseenter(function () {
-        drop_list.stop();
-        drop_list.slideDown(300);
-    });
-    drop_name.mouseleave(function () {
-        drop_list.stop();
-        drop_list.slideUp(300);
-    });
-    drop_list.mouseenter(function () {
-        drop_list.stop();
-    });
-    drop_list.mouseleave(function () {
-        drop_list.slideUp(300);
-    });
-</script>
+<script src="js/nav.js"></script>
 </body>
 </html>
