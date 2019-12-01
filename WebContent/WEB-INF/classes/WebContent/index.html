@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
+
+        @font-face {
+            font-family: 'cool';
+            src:url('font/kanfu.TTF');
+
+        }
         /*去除a标签的默认样式*/
         a {
             color: black;
@@ -123,6 +130,7 @@
         .line{
             border: 1px solid grey;
             height:1px;
+            margin: 0 10px;
         }
         .order{
             font-size: 14px;
@@ -170,8 +178,8 @@
             margin: 0 1px;
         }
         .score{
-            padding-top: 2px;
-            margin: 0 5px;
+            padding-top: 3px;
+            margin: 0 6px;
             color: #e09015;
         }
         .hot-comment-title{
@@ -181,65 +189,33 @@
             margin: 10px;
 
         }
-        #navigator{
-            padding: 10px 40px;
-            background-color: #37373a;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        #nav-left{
-            display: flex;
-            justify-content: center;
-        }
-        #nav-right{
-            display: flex;
-            justify-content: center;
-        }
-        #navigator a{
-            color: white;
-        }
-        #navigator a:hover{
-            color: #3399ea;
-        }
-        .nav_name{
-            font-size: 25px;
-            margin-right: 20px;
-        }
-        .nav_list{
-            margin: auto 20px;
-            font-size: 20px;
-            line-height: 20px;
-        }
-        #nav_drop{
-            font-size: 18px;
-            line-height: 20px;
-            margin: auto 60px auto 5px;
-            cursor: pointer;
-        }
-        #nav-right img{
-            margin: auto 10px;
-            width:30px;
-            height:30px;
-        }
+
     </style>
 </head>
 <body>
 <header id="navigator">
-    <div id="nav-left">
+    <div class="nav-left">
         <span class="nav_name">海大优选</span>
         <span class="nav_list"><a href="#" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
-    <div id="nav-right">
-        <img src="images/duck.jpg" alt="">
-        <span id="nav_drop">杨欧牟</span>
+    <div class="nav-right">
+        <div id="drop-name">
+            <img src="images/duck.jpg" alt="">
+            <span>杨欧牟</span>
+        </div>
+        <div>
+            <ul id="drop-list">
+                <div class="line"></div>
+                <li><a href="#">个人中心</a></li>
+                <div class="line"></div>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
     </div>
 
 </header>
 <section class="banner">
-
 
 <div class="container">
 <div class="row ">
@@ -301,11 +277,13 @@
             </div>
         </div>
     </div>
+
 </div>
 </div>
 </section>
 <section>
     <div class="container">
+
         <div class="row">
             <div class="col-md-8">
                 <div class="hot-comment">
@@ -406,7 +384,7 @@
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
                                 <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">9.5</li>
+                                <li class="score">0</li>
                             </ul>
                         </div>
                     </div>
@@ -420,23 +398,13 @@
         </div>
     </div>
 </section>
-<script>
-    // 控制评星显示
-    var star_lists = document.getElementsByClassName("star-list");
-    for(var i = 0; i<star_lists.length; i++){
-        var score = star_lists[i].getElementsByClassName("score")[0].innerText / 2;
-        var score_int = Math.floor(score);
-        var star_lis = star_lists[i].getElementsByTagName("img");
-        var j = 0;
-        while(j<score_int){
-            star_lis[j].src = "images/评星1.png";
-            j++;
-        }
-        if(score > score_int) {
-            star_lis[j].src = "images/评星0.5.png";
-        }
-    }
+<footer>
+   <div class="line"></div>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
 
-</script>
+<script src="js/tools.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%> 
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="海大优选|公共课课程评价系统">
@@ -28,6 +28,21 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
+	<script type="text/javascript">
+		//验证用户名和密码是否为空
+		function verifyLogin() {
+			if (!verifyNotNull(document.form1.name.value)) {
+				alert("用户名不能为空！");
+				return false;
+			}
+
+			if (!verifyNotNull(document.form1.pwd.value)) {
+				alert("密码不能为空！");
+				return false;
+			}
+		}
+	</script>
+
 </head>
 
 <body id="login_bg">
@@ -42,16 +57,16 @@
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="index.html"><h3>海大优选</h3></a>
+				<a href="index.jsp"><h3>海大优选</h3></a>
 			</figure>
-			  <form>
-				
+			  <form method="post" action="${pageContext.request.contextPath}/UserServlet?method=login" name="form1" onsubmit="return verifyLogin()">
+				<table>
 				<div class="form-group">
-					<input type="email" class="form-control" name="email" id="email" placeholder="账号">
+					<label for="username"></label><input type="text" class="form-control" name="username" id="username" placeholder="账号">
 					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
+					<label for="password"></label><input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div class="clearfix add_bottom_30">
@@ -63,8 +78,9 @@
 					</div>
 					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">忘记密码</a></div>
 				</div>
-				<a href="#0" class="btn_1 rounded full-width">登录</a>
-				<div class="text-center add_top_10">没有账号？ <strong><a href="register.html">注册</a></strong></div>
+			<input name="Submit" type="submit" class="button" id="Submit" value="登录" style="color:#BC8F8F">
+				<div class="text-center add_top_10">没有账号？ <strong><a href="register.jsp">注册</a></strong></div>
+				</table>
 			</form>
 			<div class="copy">© 2019 海大优选</div>
 		</aside>
@@ -72,9 +88,9 @@
 	<!-- /login -->
 		
 	<!-- COMMON SCRIPTS -->
-    <script src="js/common_scripts.js"></script>
-	<script src="js/functions.js"></script>
-	<script src="assets/validate.js"></script>
+    <script src="js/common_scripts.js" type="javascript"></script>
+	<script src="js/functions.js" type="javascript"></script>
+	<script src="assets/validate.js" type="javascript"></script>
   
 </body>
 </html>

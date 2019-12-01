@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <title>个人主页</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'cool';
+            src:url('font/kanfu.TTF');
+
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        /*正常的未被访问过的链接*/
+        a:link {
+            text-decoration: none;
+        }
+        /*已经访问过的链接*/
+        a:visited {
+            text-decoration: none;
+        }
+        /*鼠标划过(停留)的链接*/
+        a:hover {
+            text-decoration: none;
+
+        }
+        /* 正在点击的链接*/
+        a:active {
+            text-decoration: none;
+        }
+        ul, li{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        footer{
+            background-color: whitesmoke;
+            position: fixed;
+            bottom: 0;
+            width:100%;
+
+
+        }
         body{
             background-color: rgba(159, 159, 159, 0.04);
         }
@@ -138,9 +178,29 @@
     </style>
 </head>
 <body>
-<nav>
-</nav>
-    <div class="container " id="profile">
+<header id="navigator">
+    <div class="nav-left">
+        <span class="nav_name">海大优选</span>
+        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="#">课程</a></span>
+    </div>
+    <div class="nav-right">
+        <div id="drop-name">
+            <img src="images/duck.jpg" alt="">
+            <span>杨欧牟</span>
+        </div>
+        <div>
+            <ul id="drop-list">
+                <div class="line"></div>
+                <li><a href="#">个人中心</a></li>
+                <div class="line"></div>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<div class="container " id="profile">
         <div class="row">
             <div class="col-md-12">
                 <h3>个人资料</h3>
@@ -228,6 +288,13 @@
         </div>
 
     </div>
+<footer>
+    <div class="line"></div>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
+<script src="js/tools.js"></script>
 <script>
     window.onload = function () {
         var window_length =document.body.clientWidth;

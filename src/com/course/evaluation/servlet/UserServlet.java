@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 /**
  * @author 曾哲
  */
-@WebServlet(name = "UserServlet")
 public class UserServlet extends HttpServlet {
 
     private UserService usersService = new UserService();
@@ -42,7 +41,8 @@ public class UserServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             // 转发
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            PrintWriter out = response.getWriter();
+            out.print("<script>"+"window.location.href = '"+request.getContextPath()+"/IndexServlet?method=allInfo';"+"</script>");
         }
         // 失败——/login.jsp
         else {
@@ -143,6 +143,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String method = request.getParameter("method");
+        System.out.println("method:"+method);
         if ("login".equals(method)) {
             login(request, response);
         } else if ("logout".equals(method)) {

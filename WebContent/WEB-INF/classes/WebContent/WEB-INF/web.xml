@@ -24,7 +24,7 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-    <filter>
+    <!--<filter>
         <display-name>UserFilter</display-name>
         <filter-name>UserFilter</filter-name>
         <filter-class>com.course.evaluation.filter.UserFilter</filter-class>
@@ -40,7 +40,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
+    </filter-mapping>-->
     <servlet>
         <description></description>
         <display-name>UserServlet</display-name>
@@ -60,6 +60,26 @@
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/IndexServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description></description>
+        <display-name>CourseServlet</display-name>
+        <servlet-name>CourseServlet</servlet-name>
+        <servlet-class>com.course.evaluation.servlet.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CourseServlet</servlet-name>
+        <url-pattern>/CourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description></description>
+        <display-name>EvaluationServlet</display-name>
+        <servlet-name>EvaluationServlet</servlet-name>
+        <servlet-class>com.course.evaluation.servlet.EvaluationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EvaluationServlet</servlet-name>
+        <url-pattern>/EvaluationServlet</url-pattern>
     </servlet-mapping>
     <jsp-config>
         <taglib>

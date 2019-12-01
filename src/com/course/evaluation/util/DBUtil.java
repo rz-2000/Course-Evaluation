@@ -22,8 +22,8 @@ public class DBUtil {
     static {
         try {
             //读取配置文件，加载JDBC四大参数
-            drivatename = "com.mysql.jdbc.Driver";
-            url = "jdbc:mysql://localhost:3306/evaluation_course";
+            drivatename = "com.mysql.cj.jdbc.Driver";
+            url = "jdbc:mysql://localhost:3306/evaluation_course?serverTimezone=GMT%2B8";
             username = "root";
             password = "root";
 //			Properties config = new Properties();
