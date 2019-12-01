@@ -1,7 +1,10 @@
 package com.course.evaluation.servlet;
 
 import com.course.evaluation.po.Evaluation;
+import com.course.evaluation.po.Page;
 import com.course.evaluation.service.EvaluationService;
+import com.course.evaluation.util.PageUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -73,6 +76,33 @@ public class EvaluationServlet extends HttpServlet {
         request.getRequestDispatcher("evaluation.jsp").forward(request,response);
     }
 
+    protected void findByPage(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String currentPageStr = request.getParameter("currentPage");
+        int currentPage;
+        // 如果没有currentPage,默认查询第一页
+        if (currentPageStr == null) {
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(currentPageStr);
+        }
+        // 总条数
+        long totalCount = evaluationService.count();
+        // 创建一个Page对象 1.每页显示的条数 2.总条数 3.页数
+        Page<Evaluation> page = PageUtil.createPage(5, (int) totalCount, currentPage);
+        if (currentPage>page.getTotalPage() && currentPage!=1) {
+            currentPage=page.getTotalPage();
+        }
+        page = PageUtil.createPage(5, (int) totalCount, currentPage);
+        page = evaluationService.findByPage(page);
+        // 把page保存到域中
+        request.setAttribute("evaluationPage", page);
+        // 转发到review-page.jsp
+        request.getRequestDispatcher("review-page.jsp").forward(request, response);
+    }
+
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -90,6 +120,8 @@ public class EvaluationServlet extends HttpServlet {
             chg(request, response);
         } else if ("showEvaluation".equals(method)) {
             showEvaluation(request, response);
+        } else if (method.equals("findByPage")) {
+            findByPage(request, response);
         }
 
     }
