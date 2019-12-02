@@ -21,7 +21,7 @@ public class EvaluationDao {
     // 添加
     public int add(Evaluation evaluation) {
         Connection conn = DBUtil.getConn();
-        String sql = "insert into evaluation(id,userId,courseId,star,content,time,support) values(?,?,?,?,?,?,?)";
+        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,support) values(?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
@@ -45,16 +45,17 @@ public class EvaluationDao {
     }
 
     // 查询一共有多少条
-    public long count() {
+    public int count(Integer id) {
         // 获取连接
         Connection conn = DBUtil.getConn();
         // sql语句
-        String sql = "SELECT COUNT(*) FROM evaluation where evaluation.courseId=courseId && evaluation.star=star";
+        String sql = "SELECT COUNT(*) FROM evaluation where course_id=?";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
-        long count = 0;
+        int count = 0;
         try {
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,id);
             rSet = pstmt.executeQuery();
             if (rSet.next()) {
                 count = rSet.getInt(1);
@@ -170,11 +171,11 @@ public class EvaluationDao {
 //		preTime = preTime + " 23:59:59";
         Connection conn = DBUtil.getConn();
         String sql = "SELECT "
-                + "m.content,COUNT(o.support) "
-                + "FROM support m,evaluation o "
+                + "o.content,COUNT(o.support) "
+                + "FROM course m,evaluation o "
                 + "WHERE "
-                + "m.id=o.courseId"
-                + " GROUP BY m.content "
+                + "m.id=o.course_id"
+                + " GROUP BY o.content "
                 + "ORDER BY COUNT(o.support) DESC";
 //		String sql = "SELECT "
 //				+ "m.name,COUNT(o.menusum) "
@@ -214,9 +215,9 @@ public class EvaluationDao {
         // 获取连接
         Connection conn = DBUtil.getConn();
         // sql语句
-        String sql = "SELECT " + "o.id," + "o.userId," +  "m.content,"
-                + "o.star," + "m.courseId,"  + "o.times," + "o.support " + "FROM "
-                + "evaluation o,user u,course m " + "WHERE " + "o.userId = u.id && o.courseId = m.id limit ?,?";
+        String sql = "SELECT " + "o.id," + "o.user_id," +  "o.content,"
+                + "o.star," + "m.id,"  + "o.time," + "o.support " + "FROM "
+                + "evaluation o,user u,course m " + "WHERE " + "o.user_id = u.id && o.course_id = m.id limit ?,?";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         ArrayList<Evaluation> list = new ArrayList<Evaluation>();

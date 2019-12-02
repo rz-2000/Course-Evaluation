@@ -15,7 +15,7 @@ public class Course {
     private Integer twoStar;
     private Integer oneStar;
     private Integer total;
-    private float score;
+    private double score;
     private String image;
 
     public Course() {
@@ -126,11 +126,11 @@ public class Course {
         this.total = total;
     }
 
-    public float getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(double score) {
         this.score = score;
     }
 

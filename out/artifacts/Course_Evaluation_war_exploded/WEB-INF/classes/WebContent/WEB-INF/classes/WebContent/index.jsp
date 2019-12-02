@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
@@ -185,11 +186,32 @@
     </style>
 </head>
 <body>
-<header></header>
+<header id="navigator">
+    <div class="nav-left">
+        <span class="nav_name">海大优选</span>
+        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="#">课程</a></span>
+    </div>
+    <div class="nav-right">
+        <div id="drop-name">
+            <img src="images/duck.jpg" alt="">
+            <span>${username}</span>
+        </div>
+        <div>
+            <ul id="drop-list">
+                <div class="line"></div>
+                <li><a href="#">个人中心</a></li>
+                <div class="line"></div>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
 
 <section class="banner">
 <div class="container">
-<div class="row ">
+<div class="row">
     <div class="col-md-8 search">
         <h1 class="slogan">海大优选</h1>
         <form action="">
@@ -197,7 +219,7 @@
             <button class="search-button" type="submit">搜索</button>
         </form>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div id="billboard">
             <div class="billboard-hd">
                 <h2>课程好评榜</h2>
@@ -262,7 +284,7 @@
     // 控制评星显示
     var star_lists = document.getElementsByClassName("star-list");
     for(var i = 0; i<star_lists.length; i++){
-        var score = star_lists[i].getElementsByClassName("score")[0].innerText;
+        var score = star_lists[i].getElementsByClassName("score")[0].innerText / 2;
         var score_int = Math.floor(score);
         var star_lis = star_lists[i].getElementsByTagName("img");
         var j = 0;

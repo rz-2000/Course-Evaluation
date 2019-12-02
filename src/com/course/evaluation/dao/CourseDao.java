@@ -1,6 +1,7 @@
 package com.course.evaluation.dao;
 
 import com.course.evaluation.po.Course;
+import com.course.evaluation.po.User;
 import com.course.evaluation.util.DBUtil;
 
 import java.sql.Connection;
@@ -145,7 +146,8 @@ public class CourseDao {
                 course.setTwoStar(rSet.getInt(9));
                 course.setOneStar(rSet.getInt(10));
                 course.setTotal(rSet.getInt(11));
-                course.setScore(rSet.getFloat(12));
+//                System.out.println("score:"+rSet.getDouble(12));
+                course.setScore(rSet.getDouble(12));
                 course.setImage(rSet.getString(13));
                 courseList.add(course);
             }
@@ -181,7 +183,7 @@ public class CourseDao {
                 course.setTwoStar(rSet.getInt(9));
                 course.setOneStar(rSet.getInt(10));
                 course.setTotal(rSet.getInt(11));
-                course.setScore(rSet.getFloat(12));
+                course.setScore(rSet.getDouble(12));
                 course.setImage(rSet.getString(13));
                 courseList.add(course);
             }
@@ -192,5 +194,30 @@ public class CourseDao {
             DBUtil.closeConn(conn);
         }
         return courseList;
+    }
+
+    /**
+     * 修改评分
+     */
+    public int update(Course course) {
+        //获取连接
+        Connection conn = DBUtil.getConn();
+        //sql语句
+        String sql = "update course set score=? where id=?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1,course.getScore());
+            pstmt.setInt(2,course.getId());
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            DBUtil.closePstmt(pstmt);
+            DBUtil.closeConn(conn);
+        }
+        return result;
     }
 }

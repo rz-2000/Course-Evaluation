@@ -32,4 +32,8 @@ public class CourseService {
     public List<Course> findAllOrderByScore(){
         return courseDao.findAllOrderByScore();
     }
+
+    public int updateScore(Course course){
+        return courseDao.update(course);
+    }
 }

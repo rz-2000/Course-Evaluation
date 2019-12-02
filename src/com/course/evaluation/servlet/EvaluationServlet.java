@@ -79,6 +79,8 @@ public class EvaluationServlet extends HttpServlet {
     protected void findByPage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String currentPageStr = request.getParameter("currentPage");
+        String courseIdStr = request.getParameter("id");
+        int courseId = Integer.parseInt(courseIdStr);
         int currentPage;
         // 如果没有currentPage,默认查询第一页
         if (currentPageStr == null) {
@@ -87,7 +89,7 @@ public class EvaluationServlet extends HttpServlet {
             currentPage = Integer.parseInt(currentPageStr);
         }
         // 总条数
-        long totalCount = evaluationService.count();
+        int totalCount = evaluationService.count(courseId);
         // 创建一个Page对象 1.每页显示的条数 2.总条数 3.页数
         Page<Evaluation> page = PageUtil.createPage(5, (int) totalCount, currentPage);
         if (currentPage>page.getTotalPage() && currentPage!=1) {

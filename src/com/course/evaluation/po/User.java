@@ -8,18 +8,19 @@ public class User {
     private String username;
     private String password;
     private String realName;
-    private Integer number;
+    private String number;
     private String major;
     private Integer grade;
     private Integer sex;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
     private String profilePhoto;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String realName, Integer number, String major, Integer grade, Integer sex, Integer phoneNumber, String email, String profilePhoto) {
+    public User(Integer id, String username, String password, String realName, String number, String major,
+                Integer grade, Integer sex, String phoneNumber, String email, String profilePhoto) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -65,11 +66,11 @@ public class User {
         this.realName = realName;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -97,11 +98,11 @@ public class User {
         this.sex = sex;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

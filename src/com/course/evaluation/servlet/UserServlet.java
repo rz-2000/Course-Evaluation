@@ -41,8 +41,9 @@ public class UserServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             // 转发
-            PrintWriter out = response.getWriter();
-            out.print("<script>"+"window.location.href = '"+request.getContextPath()+"/IndexServlet?method=allInfo';"+"</script>");
+            request.getRequestDispatcher("/IndexServlet?method=allInfo").forward(request, response);
+            /*PrintWriter out = response.getWriter();
+            out.print("<script>"+"window.location.href = '"+request.getContextPath()+"/IndexServlet?method=allInfo';"+"</script>");*/
         }
         // 失败——/login.jsp
         else {
@@ -69,11 +70,11 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String realName = request.getParameter("realName");
-        Integer number = Integer.valueOf(request.getParameter("number"));
+        String number = request.getParameter("number");
         String major = request.getParameter("major");
         Integer grade = Integer.valueOf(request.getParameter("grade"));
         Integer sex = Integer.valueOf(request.getParameter("sex"));
-        Integer phoneNumber = Integer.valueOf(request.getParameter("phoneNumber"));
+        String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String profilePhoto = request.getParameter("profilePhoto");
 
@@ -82,7 +83,7 @@ public class UserServlet extends HttpServlet {
         user.setUsername(username);
         user.setPassword(password);
         user.setRealName(realName);
-        user.setSex(number);
+        user.setNumber(number);
         user.setMajor(major);
         user.setGrade(grade);
         user.setSex(sex);
@@ -106,11 +107,11 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String realName = request.getParameter("realName");
-        Integer number = Integer.valueOf(request.getParameter("number"));
+        String number = request.getParameter("number");
         String major = request.getParameter("major");
         Integer grade = Integer.valueOf(request.getParameter("grade"));
         Integer sex = Integer.valueOf(request.getParameter("sex"));
-        Integer phoneNumber = Integer.valueOf(request.getParameter("phoneNumber"));
+        String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String profilePhoto = request.getParameter("profilePhoto");
 
@@ -118,7 +119,7 @@ public class UserServlet extends HttpServlet {
         user.setUsername(username);
         user.setPassword(password);
         user.setRealName(realName);
-        user.setSex(number);
+        user.setNumber(number);
         user.setMajor(major);
         user.setGrade(grade);
         user.setSex(sex);

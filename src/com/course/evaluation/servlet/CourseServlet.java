@@ -26,6 +26,9 @@ public class CourseServlet extends HttpServlet {
         String idStr = request.getParameter("id");
         Integer id = Integer.parseInt(idStr);
         course = courseService.findById(id);
+        double score = 5.0*course.getFiveStar()/course.getTotal()+4.0*course.getFourStar()/course.getTotal()+3.0*course.getThreeStar()
+                /course.getTotal()+2.0*course.getTwoStar()/course.getTotal()+1.0*course.getOneStar()/course.getTotal();
+        course.setScore(score);
         request.setAttribute("course", course);
         request.getRequestDispatcher("course.jsp").forward(request,response);
     }

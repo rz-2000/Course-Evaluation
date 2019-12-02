@@ -1,6 +1,7 @@
 package com.course.evaluation.servlet;
 
 import com.course.evaluation.po.Course;
+import com.course.evaluation.po.User;
 import com.course.evaluation.service.CourseService;
 
 import javax.servlet.ServletException;
@@ -20,12 +21,15 @@ public class IndexServlet extends HttpServlet {
     private CourseService courseService = new CourseService();
 
     protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        System.out.println("username:"+username);
         List<Course> hotCourseList;
         List<Course> bestCourseList;
         hotCourseList = courseService.findAllOrderByTotal();
         bestCourseList = courseService.findAllOrderByScore();
         request.setAttribute("hotCourseList", hotCourseList);
         request.setAttribute("bestCourseList", bestCourseList);
+        request.setAttribute("username",username);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

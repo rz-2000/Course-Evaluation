@@ -26,8 +26,8 @@ public class EvaluationService {
         return evaluationDao.findAllEvaluationById();
     }
     // 查询一共有多少条
-    public long count() {
-        return evaluationDao.count();
+    public int count(Integer courseId) {
+        return evaluationDao.count(courseId);
     }
     //修改
     public int chg(int id,Evaluation evaluation) {

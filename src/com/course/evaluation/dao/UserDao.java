@@ -28,11 +28,11 @@ public class UserDao {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(1, user.getPassword());
             pstmt.setString(1, user.getRealName());
-            pstmt.setInt(1, user.getNumber());
+            pstmt.setString(1, user.getNumber());
             pstmt.setString(1, user.getMajor());
             pstmt.setInt(1, user.getGrade());
             pstmt.setInt(1, user.getSex());
-            pstmt.setInt(1, user.getPhoneNumber());
+            pstmt.setString(1, user.getPhoneNumber());
             pstmt.setString(1, user.getEmail());
             pstmt.setString(1, user.getProfilePhoto());
             result = pstmt.executeUpdate();
@@ -69,11 +69,11 @@ public class UserDao {
                 user.setUsername(rSet.getString(2));
                 user.setPassword(rSet.getString(3));
                 user.setRealName(rSet.getString(4));
-                user.setNumber(rSet.getInt(5));
+                user.setNumber(rSet.getString(5));
                 user.setMajor(rSet.getString(6));
                 user.setGrade(rSet.getInt(7));
                 user.setSex(rSet.getInt(8));
-                user.setPhoneNumber(rSet.getInt(9));
+                user.setPhoneNumber(rSet.getString(9));
                 user.setEmail(rSet.getString(10));
                 user.setProfilePhoto(rSet.getString(11));
             }
@@ -136,11 +136,11 @@ public class UserDao {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getRealName());
-            pstmt.setInt(4, user.getNumber());
+            pstmt.setString(4, user.getNumber());
             pstmt.setString(5, user.getMajor());
             pstmt.setInt(6, user.getGrade());
             pstmt.setInt(7, user.getSex());
-            pstmt.setInt(8, user.getPhoneNumber());
+            pstmt.setString(8, user.getPhoneNumber());
             pstmt.setString(9, user.getEmail());
             pstmt.setString(10, user.getProfilePhoto());
             pstmt.setInt(11, id);
