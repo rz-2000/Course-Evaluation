@@ -178,7 +178,40 @@
 			</div>
 		</div>
 		<!-- /reviews_summary -->
-		
+			
+		<div class="container margin_60_35">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="box_general write_review">
+						<h1>写课程评论</h1>
+						<div class="rating_submit">
+							<div class="form-group">
+							<label class="d-block">评星</label>
+							<span class="rating">
+								<input type="radio" class="rating-input" id="5_star" name="rating-input" value="5 Stars"><label for="5_star" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="4_star" name="rating-input" value="4 Stars"><label for="4_star" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="3_star" name="rating-input" value="3 Stars"><label for="3_star" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="2_star" name="rating-input" value="2 Stars"><label for="2_star" class="rating-star"></label>
+								<input type="radio" class="rating-input" id="1_star" name="rating-input" value="1 Star"><label for="1_star" class="rating-star"></label>
+							</span>
+							</div>
+						</div>
+						<!-- /rating_submit -->
+						<div>是否上过该课程:
+							<label><input type="radio" name="learned" value="y">上过</label>
+							<label><input type="radio" name="learned" value="n">没上过</label>
+						<div class="form-group">
+							
+							<label>评论内容：</label>
+							<textarea class="form-control" style="height: 180px;" placeholder="请在这里写在你的评论（300字内）"></textarea>
+						</div>
+						
+						<a href="confirm.html" class="btn_1">提交</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container margin_60_35">
 			<div class="row">
 				<div class="col-lg-8">
