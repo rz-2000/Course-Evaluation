@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//UTF-8">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
@@ -211,38 +211,38 @@
 </header>
 
 <section class="banner">
-<div class="container">
-<div class="row">
-    <div class="col-md-8 search">
-        <h1 class="slogan">海大优选</h1>
-        <form action="">
-            <input type="text" class="search-line" placeholder="请输入您想找的课程">
-            <button class="search-button" type="submit">搜索</button>
-        </form>
-    </div>
-    <div class="col-md-2">
-        <div id="billboard">
-            <div class="billboard-hd">
-                <h2>课程好评榜</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 search">
+                <h1 class="slogan">海大优选</h1>
+                <form action="">
+                    <input type="text" class="search-line" placeholder="请输入您想找的课程">
+                    <button class="search-button" type="submit">搜索</button>
+                </form>
             </div>
-            <div class="billboard-bd">
-                <table>
-                    <tbody>
-                    <c:set var="count" value="0"></c:set>
-                    <c:forEach items="${bestCourseList}" var="item">
-                    <tr>
-                        <td class="order">${count+1}</td>
-                        <td class="title"><a href="#">${item.name}</a></td>
-                    </tr>
-                        <c:set var="count" value="${count+1}"></c:set>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="col-md-4">
+                <div id="billboard">
+                    <div class="billboard-hd">
+                        <h2>课程好评榜</h2>
+                    </div>
+                    <div class="billboard-bd">
+                        <table>
+                            <tbody>
+                            <c:set var="count" value="0"></c:set>
+                            <c:forEach items="${bestCourseList}" var="item">
+                                <tr>
+                                    <td class="order">${count+1}</td>
+                                    <td class="title"><a href="#">${item.name}</a></td>
+                                </tr>
+                                <c:set var="count" value="${count+1}"></c:set>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </section>
 <section>
     <div class="container">
@@ -252,30 +252,30 @@
                     <h4 class="hot-comment-title">正在热评</h4>
                     <div class="line"></div>
                 </div>
-                    <div class="hot-comment-content">
-                        <c:set var="count" value="0"></c:set>
-                        <c:forEach items="${hotCourseList}" var="item">
-                        <c:if test="${count%4==0}"><tr></c:if>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="${item.image}" alt="" class="cover"></a>
-                            <a href="" class="card-hd">${item.name}</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">${item.score}</li>
-                            </ul>
-                        </div>
-                            <c:set var="count" value="${count+1}"></c:set>
-                        </c:forEach>
+                <div class="hot-comment-content">
+                    <c:set var="count" value="0"></c:set>
+                    <c:forEach items="${hotCourseList}" var="item">
+                    <c:if test="${count%4==0}"><tr></c:if>
+                    <div class="hot-comment-card">
+                        <a href="#"><img src="${item.image}" alt="" class="cover"></a>
+                        <a href="" class="card-hd">${item.name}</a>
+                        <ul class="star-list">
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li class="score">${item.score}</li>
+                        </ul>
                     </div>
+                        <c:set var="count" value="${count+1}"></c:set>
+                    </c:forEach>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="announcement">
                     <h4 class="announcement-title">通知</h4>
-                    
+
                 </div>
             </div>
         </div>

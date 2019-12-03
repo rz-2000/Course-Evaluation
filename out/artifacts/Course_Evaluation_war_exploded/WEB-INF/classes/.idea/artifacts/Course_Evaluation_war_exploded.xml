@@ -6,10 +6,6 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Course-Evaluation" />
         </element>
-        <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/jstl.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/standard.jar" />
-        </element>
       </element>
       <element id="javaee-facet-resources" facet="Course-Evaluation/web/Web" />
       <element id="javaee-facet-resources" facet="Course-Evaluation/web/Web2" />
