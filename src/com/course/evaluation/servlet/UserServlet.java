@@ -108,24 +108,24 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String realName = request.getParameter("realName");
         String number = request.getParameter("number");
-        String major = request.getParameter("major");
+        /*String major = request.getParameter("major");
         Integer grade = Integer.valueOf(request.getParameter("grade"));
         Integer sex = Integer.valueOf(request.getParameter("sex"));
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
-        String profilePhoto = request.getParameter("profilePhoto");
+        String profilePhoto = request.getParameter("profilePhoto");*/
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setRealName(realName);
         user.setNumber(number);
-        user.setMajor(major);
+        /*user.setMajor(major);
         user.setGrade(grade);
         user.setSex(sex);
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
-        user.setProfilePhoto(profilePhoto);
+        user.setProfilePhoto(profilePhoto);*/
         int result = usersService.reg(user);
         PrintWriter out = response.getWriter();
         if (result == 1) {

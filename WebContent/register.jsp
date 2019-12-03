@@ -1,9 +1,9 @@
-<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%> 
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="海大优选|公共课课程评价系统">
@@ -40,22 +40,22 @@
 				<a href="index.html"><h3>海大优选</h3></a>
 			</figure>
 			
-			<form autocomplete="off">
+			<form method="post" action="${pageContext.request.contextPath}/UserServlet?method=reg" autocomplete="off">
 				<div class="form-group">
-					<input class="form-control" name="user_id" type="text" placeholder="账号(用户ID)">
+					<input class="form-control" name="username" type="text" placeholder="用户名">
 					<i class="ti-user"></i>
 				</div>
 				<div class="form-group">
-					<input class="form-control" name="name" type="text" placeholder="真实姓名">
+					<input class="form-control" name="realName" type="text" placeholder="真实姓名">
 					<i class="ti-user"></i>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" name="student_id" type="text" placeholder="学号">
+					<input class="form-control" name="number" type="text" placeholder="学号">
 					<i class="ti-user"></i>
 				</div>
 				
 				<div class="form-group">
-					<input class="form-control" type="password" id="password1" placeholder="密码">
+					<input class="form-control" type="password" name="password" id="password1" placeholder="密码">
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div class="form-group">
@@ -63,8 +63,8 @@
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div id="pass-info" class="clearfix"></div>
-				<a href="#0" class="btn_1 rounded full-width">注册!</a>
-				<div class="text-center add_top_10">已经有账号了? <strong><a href="login.html">登录</a></strong></div>
+				<input type="submit" class="btn_1 rounded full-width" value="注册">
+				<div class="text-center add_top_10">已经有账号了? <strong><a href="login.jsp">登录</a></strong></div>
 			</form>
 			<div class="copy">© 2019 海大优选</div>
 		</aside>

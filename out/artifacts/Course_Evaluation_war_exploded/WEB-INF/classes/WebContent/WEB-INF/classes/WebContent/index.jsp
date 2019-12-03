@@ -127,6 +127,7 @@
             height:1px;
         }
         .order{
+            color: white;
             font-size: 14px;
             text-align: center;
         }
@@ -254,7 +255,7 @@
                     <div class="hot-comment-content">
                         <c:set var="count" value="0"></c:set>
                         <c:forEach items="${hotCourseList}" var="item">
-                        <c:if test="${count%5==0}"><tr></c:if>
+                        <c:if test="${count%4==0}"><tr></c:if>
                         <div class="hot-comment-card">
                             <a href="#"><img src="${item.image}" alt="" class="cover"></a>
                             <a href="" class="card-hd">${item.name}</a>

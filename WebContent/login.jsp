@@ -31,12 +31,12 @@
 	<script type="text/javascript">
 		//验证用户名和密码是否为空
 		function verifyLogin() {
-			if (!verifyNotNull(document.form1.name.value)) {
+			if (!verifyNotNull(document.form1.username.value)) {
 				alert("用户名不能为空！");
 				return false;
 			}
 
-			if (!verifyNotNull(document.form1.pwd.value)) {
+			if (!verifyNotNull(document.form1.password.value)) {
 				alert("密码不能为空！");
 				return false;
 			}
@@ -62,11 +62,11 @@
 			  <form method="post" action="${pageContext.request.contextPath}/UserServlet?method=login" name="form1" onsubmit="return verifyLogin()">
 				<table>
 				<div class="form-group">
-					<label for="username"></label><input type="text" class="form-control" name="username" id="username" placeholder="账号">
+					<input type="text" class="form-control" name="username" id="email" placeholder="账号">
 					<i class="icon_mail_alt"></i>
 				</div>
 				<div class="form-group">
-					<label for="password"></label><input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
+					<input type="password" class="form-control" name="password" id="password" placeholder="密码">
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div class="clearfix add_bottom_30">
@@ -78,7 +78,7 @@
 					</div>
 					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">忘记密码</a></div>
 				</div>
-			<input name="Submit" type="submit" class="button" id="Submit" value="登录" style="color:#BC8F8F">
+			<input name="Submit" type="submit" class="btn_1 rounded full-width" id="Submit" value="登录">
 				<div class="text-center add_top_10">没有账号？ <strong><a href="register.jsp">注册</a></strong></div>
 				</table>
 			</form>
@@ -88,9 +88,9 @@
 	<!-- /login -->
 		
 	<!-- COMMON SCRIPTS -->
-    <script src="js/common_scripts.js" type="javascript"></script>
-	<script src="js/functions.js" type="javascript"></script>
-	<script src="assets/validate.js" type="javascript"></script>
+    <script src="js/common_scripts.js" type="text/javascript"></script>
+	<script src="js/functions.js" type="text/javascript"></script>
+	<script src="assets/validate.js" type="text/javascript"></script>
   
 </body>
 </html>
