@@ -35,16 +35,26 @@ public class EvaluationServlet extends HttpServlet {
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String evaluation = request.getParameter("evaluation");
         Integer star = Integer.valueOf(request.getParameter("star"));
-
+        Boolean learned = Boolean.valueOf(request.getParameter("learned"));
         Evaluation eva = new Evaluation();
         eva.setContent(evaluation);
         eva.setStar(star);
+        eva.setLearned(learned);
         int result = evaluationService.add(eva);
         PrintWriter out = response.getWriter();
+        if (result == 1) {
+            HttpSession session = request.getSession();
+            session.removeAttribute("evaluation");
+            out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
+                    + "/reviews-page.jsp';" + "</script>");
+        } else {
+            out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
+                    + "/reviews-page.jsp';" + "</script>");
+        }
 
     }
 
-    protected void chg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   /* protected void chg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idStr = request.getParameter("id");
         int id = Integer.parseInt(idStr);
         String evaluation = request.getParameter("evaluation");
@@ -60,13 +70,13 @@ public class EvaluationServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.removeAttribute("evaluation");
             out.print("<script>" + "alert('修改成功');" + "window.parent.location.href='" + request.getContextPath()
-                    + "/info.jsp';" + "</script>");
+                    + "/reviews-page.jsp';" + "</script>");
         } else {
             out.print("<script>" + "alert('修改失败，请重试');" + "window.location.href='" + request.getContextPath()
-                    + "/info.jsp';" + "</script>");
+                    + "/reviews-page.jsp';" + "</script>");
         }
     }
-
+*/
     protected void showEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Evaluation evaluation = new Evaluation();
         String idStr = request.getParameter("id");
@@ -100,7 +110,7 @@ public class EvaluationServlet extends HttpServlet {
         // 把page保存到域中
         request.setAttribute("evaluationPage", page);
         // 转发到review-page.jsp
-        request.getRequestDispatcher("review-page.jsp").forward(request, response);
+        request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }
 
 
@@ -118,8 +128,8 @@ public class EvaluationServlet extends HttpServlet {
         String method = request.getParameter("method");
         if ("add".equals(method)) {
             add(request, response);
-        } else if ("chg".equals(method)) {
-            chg(request, response);
+        //} else if ("chg".equals(method)) {
+          //  chg(request, response);
         } else if ("showEvaluation".equals(method)) {
             showEvaluation(request, response);
         } else if (method.equals("findByPage")) {
