@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 曾哲
@@ -81,9 +82,14 @@ public class EvaluationServlet extends HttpServlet {
         Evaluation evaluation = new Evaluation();
         String idStr = request.getParameter("id");
         Integer id = Integer.parseInt(idStr);
+        ArrayList<Evaluation> evaluationList;
+        evaluationList =  evaluationService.ordersRank();
         evaluation = evaluationService.findById(id);
+        Integer support = evaluationService.addSupport(evaluation);
+        evaluation.setSupport(support);
+        request.setAttribute("evaluationList", evaluationList);
         request.setAttribute("evaluation", evaluation);
-        request.getRequestDispatcher("evaluation.jsp").forward(request,response);
+        request.getRequestDispatcher("reviews-page.jsp").forward(request,response);
     }
 
     protected void findByPage(HttpServletRequest request, HttpServletResponse response)
@@ -112,7 +118,6 @@ public class EvaluationServlet extends HttpServlet {
         // 转发到review-page.jsp
         request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }
-
 
 
     @Override
