@@ -13,6 +13,12 @@
    - Vue.js ... 待续
 2. **后端部分**
    - Java
-   - 数据库：Mysql
+     - JDK (1.)8及以上
+   - 数据库：Mysql 8及以上
+     - 数据库名称：course_evaluation
+     - 用户名：root
+     - 密码：123456
+     - 建表语句sql文件：doc/course_evaluation.sql
+   - Tomcat 9及以上
 3. **整体框架**：MVC架构
 

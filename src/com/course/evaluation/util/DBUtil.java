@@ -25,7 +25,7 @@ public class DBUtil {
             drivatename = "com.mysql.cj.jdbc.Driver";
             url = "jdbc:mysql://localhost:3306/course_evaluation?serverTimezone=GMT%2B8";
             username = "root";
-            password = "root";
+            password = "123456";
 //			Properties config = new Properties();
 //			config.load(new FileReader(new File("JDBC.conf")));
 //			drivatename = config.getProperty("drivername");

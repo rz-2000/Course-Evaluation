@@ -72,11 +72,19 @@ public class UserServlet extends HttpServlet {
         String realName = request.getParameter("realName");
         String number = request.getParameter("number");
         String major = request.getParameter("major");
-        Integer grade = Integer.valueOf(request.getParameter("grade"));
+        int grade = Integer.parseInt(request.getParameter("grade"));
+        switch (grade){
+            case 1:grade=2015;break;
+            case 2:grade=2016;break;
+            case 3:grade=2017;break;
+            case 4:grade=2018;break;
+            case 5:grade=2019;break;
+            default:break;
+        }
         Integer sex = Integer.valueOf(request.getParameter("sex"));
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
-        String profilePhoto = request.getParameter("profilePhoto");
+//        String profilePhoto = request.getParameter("profilePhoto");
 
         User user = new User();
         user.setId(id);
@@ -89,7 +97,7 @@ public class UserServlet extends HttpServlet {
         user.setSex(sex);
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
-        user.setProfilePhoto(profilePhoto);
+//        user.setProfilePhoto(profilePhoto);
         int result = usersService.update(id, user);
         PrintWriter out = response.getWriter();
         if (result == 1) {
@@ -99,7 +107,7 @@ public class UserServlet extends HttpServlet {
                     + "/login.jsp';" + "</script>");
         } else {
             out.print("<script>" + "alert('修改失败');" + "window.location.href='" + request.getContextPath()
-                    + "/center.jsp';" + "</script>");
+                    + "/info.jsp';" + "</script>");
         }
     }
 
