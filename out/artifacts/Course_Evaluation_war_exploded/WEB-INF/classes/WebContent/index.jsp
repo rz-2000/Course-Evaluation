@@ -1,15 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//UTF-8">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>海大优选</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'cool';
+            src:url('font/kanfu.TTF');
+
+        }
         /*去除a标签的默认样式*/
         a {
             color: black;
@@ -26,6 +31,7 @@
         /*鼠标划过(停留)的链接*/
         a:hover {
             text-decoration: none;
+
         }
         /* 正在点击的链接*/
         a:active {
@@ -125,9 +131,9 @@
         .line{
             border: 1px solid grey;
             height:1px;
+            margin: 0 10px;
         }
         .order{
-            color: white;
             font-size: 14px;
             text-align: center;
         }
@@ -173,8 +179,8 @@
             margin: 0 1px;
         }
         .score{
-            padding-top: 2px;
-            margin: 0 5px;
+            padding-top: 3px;
+            margin: 0 6px;
             color: #e09015;
         }
         .hot-comment-title{
@@ -190,7 +196,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="index.jsp" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">
@@ -201,7 +207,7 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="#">个人中心</a></li>
+                <li><a href="info.jsp">个人中心</a></li>
                 <div class="line"></div>
                 <li><a href="">退出</a></li>
             </ul>
@@ -209,40 +215,39 @@
     </div>
 
 </header>
-
 <section class="banner">
-<div class="container">
-<div class="row">
-    <div class="col-md-8 search">
-        <h1 class="slogan">海大优选</h1>
-        <form action="">
-            <input type="text" class="search-line" placeholder="请输入您想找的课程">
-            <button class="search-button" type="submit">搜索</button>
-        </form>
-    </div>
-    <div class="col-md-2">
-        <div id="billboard">
-            <div class="billboard-hd">
-                <h2>课程好评榜</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 search">
+                <h1 class="slogan">海大优选</h1>
+                <form action="">
+                    <input type="text" class="search-line" placeholder="请输入您想找的课程">
+                    <button class="search-button" type="submit">搜索</button>
+                </form>
             </div>
-            <div class="billboard-bd">
-                <table>
-                    <tbody>
-                    <c:set var="count" value="0"></c:set>
-                    <c:forEach items="${bestCourseList}" var="item">
-                    <tr>
-                        <td class="order">${count+1}</td>
-                        <td class="title"><a href="#">${item.name}</a></td>
-                    </tr>
-                        <c:set var="count" value="${count+1}"></c:set>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="col-md-4">
+                <div id="billboard">
+                    <div class="billboard-hd">
+                        <h2>课程好评榜</h2>
+                    </div>
+                    <div class="billboard-bd">
+                        <table>
+                            <tbody>
+                            <c:set var="count" value="0"></c:set>
+                            <c:forEach items="${bestCourseList}" var="item">
+                                <tr>
+                                    <td class="order">${count+1}</td>
+                                    <td class="title"><a href="#">${item.name}</a></td>
+                                </tr>
+                                <c:set var="count" value="${count+1}"></c:set>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </section>
 <section>
     <div class="container">
@@ -252,52 +257,40 @@
                     <h4 class="hot-comment-title">正在热评</h4>
                     <div class="line"></div>
                 </div>
-                    <div class="hot-comment-content">
-                        <c:set var="count" value="0"></c:set>
-                        <c:forEach items="${hotCourseList}" var="item">
-                        <c:if test="${count%4==0}"><tr></c:if>
-                        <div class="hot-comment-card">
-                            <a href="#"><img src="${item.image}" alt="" class="cover"></a>
-                            <a href="" class="card-hd">${item.name}</a>
-                            <ul class="star-list">
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li><img src="images/评星0.png" alt="" class="star"></li>
-                                <li class="score">${item.score}</li>
-                            </ul>
-                        </div>
-                            <c:set var="count" value="${count+1}"></c:set>
-                        </c:forEach>
+                <div class="hot-comment-content">
+                    <c:set var="count" value="0"></c:set>
+                    <c:forEach items="${hotCourseList}" var="item">
+                    <c:if test="${count%4==0}"><tr></c:if>
+                    <div class="hot-comment-card">
+                        <a href="#"><img src="${item.image}" alt="" class="cover"></a>
+                        <a href="" class="card-hd">${item.name}</a>
+                        <ul class="star-list">
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li><img src="images/评星0.png" alt="" class="star"></li>
+                            <li class="score">${item.score}</li>
+                        </ul>
                     </div>
+                        <c:set var="count" value="${count+1}"></c:set>
+                    </c:forEach>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="announcement">
                     <h4 class="announcement-title">通知</h4>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script>
-    // 控制评星显示
-    var star_lists = document.getElementsByClassName("star-list");
-    for(var i = 0; i<star_lists.length; i++){
-        var score = star_lists[i].getElementsByClassName("score")[0].innerText / 2;
-        var score_int = Math.floor(score);
-        var star_lis = star_lists[i].getElementsByTagName("img");
-        var j = 0;
-        while(j<score_int){
-            star_lis[j].src = "images/评星1.png";
-            j++;
-        }
-        if(score > score_int) {
-            star_lis[j].src = "images/评星0.5.png";
-        }
-    }
-
-</script>
+<footer>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
+<script src="js/tools.js"></script>
 </body>
 </html>

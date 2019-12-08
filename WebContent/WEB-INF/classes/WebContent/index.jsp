@@ -4,12 +4,17 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Title</title>
+    <title>海大优选</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'cool';
+            src:url('font/kanfu.TTF');
+
+        }
         /*去除a标签的默认样式*/
         a {
             color: black;
@@ -26,6 +31,7 @@
         /*鼠标划过(停留)的链接*/
         a:hover {
             text-decoration: none;
+
         }
         /* 正在点击的链接*/
         a:active {
@@ -125,9 +131,9 @@
         .line{
             border: 1px solid grey;
             height:1px;
+            margin: 0 10px;
         }
         .order{
-            color: white;
             font-size: 14px;
             text-align: center;
         }
@@ -173,8 +179,8 @@
             margin: 0 1px;
         }
         .score{
-            padding-top: 2px;
-            margin: 0 5px;
+            padding-top: 3px;
+            margin: 0 6px;
             color: #e09015;
         }
         .hot-comment-title{
@@ -190,7 +196,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="index.jsp" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">
@@ -201,7 +207,7 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="#">个人中心</a></li>
+                <li><a href="info.jsp">个人中心</a></li>
                 <div class="line"></div>
                 <li><a href="">退出</a></li>
             </ul>
@@ -209,7 +215,6 @@
     </div>
 
 </header>
-
 <section class="banner">
     <div class="container">
         <div class="row">
@@ -281,23 +286,11 @@
         </div>
     </div>
 </section>
-<script>
-    // 控制评星显示
-    var star_lists = document.getElementsByClassName("star-list");
-    for(var i = 0; i<star_lists.length; i++){
-        var score = star_lists[i].getElementsByClassName("score")[0].innerText / 2;
-        var score_int = Math.floor(score);
-        var star_lis = star_lists[i].getElementsByTagName("img");
-        var j = 0;
-        while(j<score_int){
-            star_lis[j].src = "images/评星1.png";
-            j++;
-        }
-        if(score > score_int) {
-            star_lis[j].src = "images/评星0.5.png";
-        }
-    }
-
-</script>
+<footer>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
+<script src="js/tools.js"></script>
 </body>
 </html>
