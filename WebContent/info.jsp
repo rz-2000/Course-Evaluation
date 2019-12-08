@@ -4,17 +4,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>个人主页</title>
+    <title>个人中心</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'cool';
-            src:url('font/kanfu.TTF');
-
-        }
         a {
             color: black;
             text-decoration: none;
@@ -46,8 +41,6 @@
             position: fixed;
             bottom: 0;
             width:100%;
-
-
         }
         body{
             background-color: rgba(159, 159, 159, 0.04);
@@ -183,7 +176,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="index.jsp" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">

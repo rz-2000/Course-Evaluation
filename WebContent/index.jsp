@@ -10,11 +10,6 @@
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'cool';
-            src:url('font/kanfu.TTF');
-
-        }
         /*去除a标签的默认样式*/
         a {
             color: black;

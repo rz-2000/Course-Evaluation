@@ -10,11 +10,6 @@
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'cool';
-            src:url('font/kanfu.TTF');
-
-        }
         /*去除a标签的默认样式*/
         a {
             color: black;
@@ -208,7 +203,6 @@
             <ul id="drop-list">
                 <div class="line"></div>
                 <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info&username=${username}">个人中心</a></li>
-
                 <div class="line"></div>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
@@ -287,7 +281,6 @@
         </div>
     </div>
 </section>
-
 <footer>
     <div class="copyright">
         Copyright © 2019 大碗宽面 All Rights Reserved

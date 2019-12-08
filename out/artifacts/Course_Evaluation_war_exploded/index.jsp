@@ -4,19 +4,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
     <title>海大优选</title>
-    <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'cool';
-            src:url('font/kanfu.TTF');
-
-        }
         /*去除a标签的默认样式*/
         a {
             color: black;
