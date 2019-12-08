@@ -189,7 +189,7 @@
     <div class="nav-right">
         <div id="drop-name">
             <img src="images/duck.jpg" alt="">
-            <span>杨欧牟</span>
+            <span>${user.username}</span>
         </div>
         <div>
             <ul id="drop-list">
@@ -216,17 +216,22 @@
                 </div>
                 <div class="col-md-10 right_c">
                     <div class="nick">
-                        <span>用户名：Zayn17</span>
+                        <span>用户名：${user.username}</span>
                         <span class="mod">修改资料</span>
                     </div>
                     <ul class="self">
-                        <li>实名：旺财</li>
+                        <li>实名：${user.realName}</li>
+                        <c:if test="${user.sex eq 1}">
                         <li>性别：男</li>
-                        <li>学号：17020031011</li>
-                        <li>专业：</li>
-                        <li>入学时间：2017年</li>
-                        <li>手机号码：1008208820</li>
-                        <li>邮箱：wangwangwang@163.com</li>
+                        </c:if>
+                        <c:if test="${user.sex eq 2}">
+                        <li>性别：女</li>
+                        </c:if>
+                        <li>学号：${user.number}</li>
+                        <li>专业：${user.major}</li>
+                        <li>入学时间：${user.grade}年</li>
+                        <li>手机号码：${user.phoneNumber}</li>
+                        <li>邮箱：${user.email}</li>
                     </ul>
                 </div>
         </div>
@@ -239,14 +244,14 @@
                 <div style="clear: both">
                     <hr>
                 </div>
-                <form action="">
+                <form action="${pageContext.request.contextPath}/UserServlet?method=update" method="post">
                     <div class="change_message">
                         <label class="left_input">用户名：</label>
-                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required">
+                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required" name="username" value="${user.username}">
                     </div>
                     <div class="change_message">
                         <label class="left_input">实名：</label>
-                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required">
+                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required" name="realName" value="${user.realName}">
                     </div>
                     <div class="change_message">
                         <span class="left_input">性别：</span>
@@ -257,11 +262,11 @@
                     </div>
                     <div class="change_message">
                         <label class="left_input">学号：</label>
-                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required">
+                        <input type="text" minlength="2" maxlength="20" class="right_input" required="required" name="number" value="${user.number}">
                     </div>
                     <div class="change_message">
                         <label class="left_input">专业：</label>
-                        <input type="text" minlength="2" maxlength="20" class="right_input">
+                        <input type="text" minlength="2" maxlength="20" class="right_input" name="major" value="${user.major}">
                     </div>
                     <div class="change_message">
                         <span class="left_input">年级：</span>
@@ -275,14 +280,16 @@
                     </div>
                     <div class="change_message">
                         <label class="left_input">手机号码：</label>
-                        <input type="tel" minlength="2" maxlength="20" class="right_input">
+                        <input type="tel" minlength="2" maxlength="20" class="right_input" name="phoneNumber" value="${user.phoneNumber}">
                     </div>
                     <div class="change_message">
                         <label class="left_input">邮箱：</label>
-                        <input type="email" minlength="2" maxlength="20" class="right_input">
+                        <input type="email" minlength="2" maxlength="20" class="right_input" name="email" value="${user.email}">
                     </div>
                     <div class="dialog_footer">
-                        <button class="btn btn-primary" type="submit">保存</button>
+                        <input type="hidden" name="id" value="${user.id}">
+                        <input type="hidden" name="password" value="${user.password}">
+                        <input class="btn btn-primary" type="submit" value="修改">
                         <span class = "btn btn_gray" id="cancel">取消</span>
                     </div>
                 </form>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.course.evaluation.dao.EvaluationDao;
+import com.course.evaluation.po.Course;
 import com.course.evaluation.po.Evaluation;
 import com.course.evaluation.po.Page;
 
@@ -30,12 +31,14 @@ public class EvaluationService {
         return evaluationDao.count(courseId);
     }
     //修改
-    public int chg(int id,Evaluation evaluation) {
-        return evaluationDao.chg(id, evaluation);
-    }
+    public int chg(int id,Evaluation evaluation) { return evaluationDao.chg(id, evaluation); }
     //排行榜
     public ArrayList<Evaluation> ordersRank() {
         return evaluationDao.ordersRank();
+    }
+
+    public int addSupport(Evaluation evaluation){
+        return evaluationDao.update(evaluation);
     }
 
 }

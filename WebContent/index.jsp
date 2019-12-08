@@ -207,9 +207,9 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="info.jsp">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info&username=${username}">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
         </div>
     </div>

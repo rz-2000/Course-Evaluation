@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.course.evaluation.po.Course;
 import com.course.evaluation.po.Page;
 import com.course.evaluation.po.Evaluation;
 import com.course.evaluation.util.DBUtil;
@@ -17,7 +18,7 @@ public class EvaluationDao {
     // 添加
     public int add(Evaluation evaluation) {
         Connection conn = DBUtil.getConn();
-        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,support) values(?,?,?,?,?,?,?)";
+        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,learned) values(?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
@@ -28,7 +29,8 @@ public class EvaluationDao {
             pstmt.setInt(4, evaluation.getStar());
             pstmt.setString(5, evaluation.getContent());
             pstmt.setString(6, evaluation.getTime());
-            pstmt.setInt(7, evaluation.getSupport());
+           // pstmt.setInt(7, evaluation.getSupport());
+            pstmt.setBoolean(7, evaluation.isLearned());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -85,7 +87,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-                evaluation.setSupport(rSet.getInt(7));
+               // evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getBoolean(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -137,7 +140,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-                evaluation.setSupport(rSet.getInt(7));
+                //evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getBoolean(7));
                 evaluationList.add(evaluation);
             }
         } catch (SQLException e) {
@@ -195,7 +199,7 @@ public class EvaluationDao {
             rSet = pstmt.executeQuery();
             while (rSet.next()) {
                 evaluation = new Evaluation();
-                evaluation.setContent(rSet.getString(1));
+                evaluation.setStar(rSet.getInt(1));
                 evaluation.setContent(rSet.getString(2));
                 list.add(evaluation);
             }
@@ -211,8 +215,8 @@ public class EvaluationDao {
         // 获取连接
         Connection conn = DBUtil.getConn();
         // sql语句
-        String sql = "SELECT " + "o.id," + "o.user_id," +  "o.content,"
-                + "o.star," + "m.id,"  + "o.time," + "o.support " + "FROM "
+        String sql = "SELECT " + "o.id," + "o.user_id," + "m.id," + " o.course_id,"
+                + "o.star,"  + "o.time," + "o.support "+ "FROM "
                 + "evaluation o,user u,course m " + "WHERE " + "o.user_id = u.id && o.course_id = m.id limit ?,?";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
@@ -230,7 +234,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-                evaluation.setSupport(rSet.getInt(7));
+                //evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getBoolean(7));
                 list.add(evaluation);
             }
             page.setList(list);
@@ -243,5 +248,30 @@ public class EvaluationDao {
             DBUtil.closeConn(conn);
         }
         return page;
+    }
+
+    /**
+     * 点赞评论
+     */
+    public int update(Evaluation evaluation) {
+        //获取连接
+        Connection conn = DBUtil.getConn();
+        //sql语句
+        String sql = "update evaluation set support=? where id=?";
+        PreparedStatement pstmt = null;
+        int result = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,evaluation.getSupport());
+            pstmt.setInt(2,evaluation.getId());
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            DBUtil.closePstmt(pstmt);
+            DBUtil.closeConn(conn);
+        }
+        return result;
     }
 }

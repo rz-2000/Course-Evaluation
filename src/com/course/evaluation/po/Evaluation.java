@@ -1,6 +1,5 @@
 package com.course.evaluation.po;
 
-import java.util.Date;
 import java.lang.String;
 /**
  * @author 曾哲
@@ -13,10 +12,10 @@ public class Evaluation {
     private String content;
     private String time;
     private Integer support;
-
+    private boolean learned;
 
     public Evaluation(Integer id, Integer userId, Integer courseId, Integer star, String content,
-                      String time, Integer support) {
+                      String time, Integer support,boolean learned) {
 
         this.id = id;
         this.userId = userId;
@@ -25,6 +24,7 @@ public class Evaluation {
         this.content = content;
         this.time = time;
         this.support = support;
+        this.learned = learned;
     }
 
     public Evaluation() {
@@ -84,4 +84,8 @@ public class Evaluation {
     public void setSupport(Integer support) {
         this.support = support;
     }
+
+    public boolean isLearned() { return learned; }
+
+    public void setLearned(boolean learned) { this.learned = learned; }
 }

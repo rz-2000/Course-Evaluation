@@ -102,6 +102,13 @@ public class UserDao {
                 user.setId(rSet.getInt(1));
                 user.setUsername(rSet.getString(2));
                 user.setPassword(rSet.getString(3));
+                user.setRealName(rSet.getString(4));
+                user.setNumber(rSet.getString(5));
+                user.setMajor(rSet.getString(6));
+                user.setGrade(rSet.getInt(7));
+                user.setSex(rSet.getInt(8));
+                user.setPhoneNumber(rSet.getString(9));
+                user.setEmail(rSet.getString(10));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

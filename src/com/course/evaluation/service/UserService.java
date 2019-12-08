@@ -41,4 +41,8 @@ public class UserService {
     public int reg(User user) {
         return userDao.add(user);
     }
+
+    public User findByUsername(String username){
+        return userDao.findByUsername(username);
+    }
 }

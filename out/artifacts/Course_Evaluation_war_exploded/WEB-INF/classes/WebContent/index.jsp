@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>海大优选</title>
+    <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/nav-footer.css">
     <script src="js/jquery-1.12.4.js"></script>
@@ -207,9 +208,9 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="info.jsp">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info&username=${username}">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
         </div>
     </div>

@@ -3,6 +3,7 @@ package com.course.evaluation.servlet;
 import com.course.evaluation.po.Course;
 import com.course.evaluation.po.User;
 import com.course.evaluation.service.CourseService;
+import com.course.evaluation.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,8 @@ public class IndexServlet extends HttpServlet {
 
     private CourseService courseService = new CourseService();
 
+    private UserService userService = new UserService();
+
     protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         System.out.println("username:"+username);
@@ -33,6 +36,15 @@ public class IndexServlet extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
+    protected void info(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        System.out.println("username:"+username);
+        User user = userService.findByUsername(username);
+        System.out.println("realName:"+user.getRealName());
+        request.setAttribute("user",user);
+        request.getRequestDispatcher("info.jsp").forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -44,6 +56,8 @@ public class IndexServlet extends HttpServlet {
         System.out.println("method:"+method);
         if ("allInfo".equals(method)){
             allInfo(request, response);
+        } else if ("info".equals(method)){
+            info(request, response);
         }
     }
 }
