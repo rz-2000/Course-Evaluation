@@ -155,4 +155,43 @@ public class UserDao {
         }
         return result;
     }
+
+    /**
+     * 根据id查询
+     * @param id 用户id
+     * @return User
+     */
+    public User findById(Integer id) {
+        Connection conn = DBUtil.getConn();
+        String sql = "select * from user where id=?";
+        PreparedStatement pstmt = null;
+        ResultSet rSet = null;
+        User user = null;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rSet = pstmt.executeQuery();
+            if (rSet.next()) {
+                user = new User();
+                user.setId(rSet.getInt(1));
+                user.setUsername(rSet.getString(2));
+                user.setPassword(rSet.getString(3));
+                user.setRealName(rSet.getString(4));
+                user.setNumber(rSet.getString(5));
+                user.setMajor(rSet.getString(6));
+                user.setGrade(rSet.getInt(7));
+                user.setSex(rSet.getInt(8));
+                user.setPhoneNumber(rSet.getString(9));
+                user.setEmail(rSet.getString(10));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeRst(rSet);
+            DBUtil.closePstmt(pstmt);
+            DBUtil.closeConn(conn);
+        }
+        return user;
+    }
 }

@@ -129,6 +129,7 @@
             margin: 0 10px;
         }
         .order{
+            color: white;
             font-size: 14px;
             text-align: center;
         }
@@ -191,7 +192,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="index.jsp" >首页</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">
@@ -215,8 +216,9 @@
         <div class="row">
             <div class="col-md-8 search">
                 <h1 class="slogan">海大优选</h1>
-                <form action="">
-                    <input type="text" class="search-line" placeholder="请输入您想找的课程">
+                <form action="${pageContext.request.contextPath}/IndexServlet?method=search" method="post">
+                    <input name="keywords" type="text" class="search-line" placeholder="请输入您想找的课程">
+                    <input name="id" type="hidden" value="${user.id}">
                     <button class="search-button" type="submit">搜索</button>
                 </form>
             </div>
@@ -232,7 +234,7 @@
                             <c:forEach items="${bestCourseList}" var="item">
                                 <tr>
                                     <td class="order">${count+1}</td>
-                                    <td class="title"><a href="#">${item.name}</a></td>
+                                    <td class="title"><a href="/CourseServlet?">${item.name}</a></td>
                                 </tr>
                                 <c:set var="count" value="${count+1}"></c:set>
                             </c:forEach>
@@ -281,6 +283,24 @@
         </div>
     </div>
 </section>
+<script>
+    // 控制评星显示
+    var star_lists = document.getElementsByClassName("star-list");
+    for(var i = 0; i<star_lists.length; i++){
+        var score = star_lists[i].getElementsByClassName("score")[0].innerText / 2;
+        var score_int = Math.floor(score);
+        var star_lis = star_lists[i].getElementsByTagName("img");
+        var j = 0;
+        while(j<score_int){
+            star_lis[j].src = "images/评星1.png";
+            j++;
+        }
+        if(score > score_int) {
+            star_lis[j].src = "images/评星0.5.png";
+        }
+    }
+
+</script>
 <footer>
     <div class="copyright">
         Copyright © 2019 大碗宽面 All Rights Reserved

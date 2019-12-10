@@ -8,7 +8,6 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Course-Evaluation/web/Web" />
-      <element id="javaee-facet-resources" facet="Course-Evaluation/web/Web2" />
     </root>
   </artifact>
 </component>

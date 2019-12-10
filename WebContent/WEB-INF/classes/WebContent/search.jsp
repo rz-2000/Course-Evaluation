@@ -102,20 +102,20 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="index.jsp" >首页</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">
         <div id="drop-name">
             <img src="images/duck.jpg" alt="">
-            <span>杨欧牟</span>
+            <span>${user.username}</span>
         </div>
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="#">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
         </div>
     </div>
@@ -136,75 +136,33 @@
 <div class="search-result">
     <div class="container">
         <div class="search-hint">
-            <h2>搜索(记得添加)</h2>
+            <h2>搜索</h2>
         </div>
         <hr>
-        <section class="search-list">
-            <a href=""><img src="images/temp.jpg" alt=""class="search-img"></a>
-            <div class="search-detail">
-                <a href="#" class="course-name">软件工程</a>
-                <ul class="star-list">
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li class="score">7</li>
-                </ul>
-                <span class="course-detail">老师：高峰</span>
-                <span class="course-detail" >类别：专业课</span>
-                <span class="course-detail">评价：</span>
-                <div class="course-comment">
-                    <p>软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件开发工具、系统平台、标准、设计模式等方面。
-                        在现代社会中，软件应用于多个方面。典型的软件有电子邮件、嵌入式系统、人机界面、办公套件、操作系统、编译器、数据库、游戏等。同时，各个行业几乎都有计算机软件的应用，如工业、农业、银行、航空、政府部门等。这些应用促进了经济和社会的发展，也提高了工作效率和生活效率 。
-                    </p>
+        <c:forEach items="${courseList}" var="item">
+            <section class="search-list">
+                <a href=""><img src="images/temp.jpg" alt=""class="search-img"></a>
+                <div class="search-detail">
+                    <a href="#" class="course-name">${item.name}</a>
+                    <ul class="star-list">
+                        <li><img src="images/评星0.png" alt="" class="star"></li>
+                        <li><img src="images/评星0.png" alt="" class="star"></li>
+                        <li><img src="images/评星0.png" alt="" class="star"></li>
+                        <li><img src="images/评星0.png" alt="" class="star"></li>
+                        <li><img src="images/评星0.png" alt="" class="star"></li>
+                        <li class="score">${item.score}</li>
+                    </ul>
+                    <span class="course-detail">老师：${item.teacher}</span>
+                    <span class="course-detail" >类别：${item.type}</span>
+                    <span class="course-detail">评价：</span>
+                    <div class="course-comment">
+                        <p>软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件开发工具、系统平台、标准、设计模式等方面。
+                            在现代社会中，软件应用于多个方面。典型的软件有电子邮件、嵌入式系统、人机界面、办公套件、操作系统、编译器、数据库、游戏等。同时，各个行业几乎都有计算机软件的应用，如工业、农业、银行、航空、政府部门等。这些应用促进了经济和社会的发展，也提高了工作效率和生活效率 。
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="search-list">
-            <a href=""><img src="images/temp.jpg" alt=""class="search-img"></a>
-            <div class="search-detail">
-                <a href="#" class="course-name">软件工程</a>
-                <ul class="star-list">
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li class="score">7</li>
-                </ul>
-                <span class="course-detail">老师：高峰</span>
-                <span class="course-detail" >类别：专业课</span>
-                <span class="course-detail">评价：</span>
-                <div class="course-comment">
-                    <p>软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件开发工具、系统平台、标准、设计模式等方面。
-                        在现代社会中，软件应用于多个方面。典型的软件有电子邮件、嵌入式系统、人机界面、办公套件、操作系统、编译器、数据库、游戏等。同时，各个行业几乎都有计算机软件的应用，如工业、农业、银行、航空、政府部门等。这些应用促进了经济和社会的发展，也提高了工作效率和生活效率 。
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="search-list">
-            <a href=""><img src="images/temp.jpg" alt=""class="search-img"></a>
-            <div class="search-detail">
-                <a href="#" class="course-name">软件工程</a>
-                <ul class="star-list">
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li><img src="images/评星0.png" alt="" class="star"></li>
-                    <li class="score">7</li>
-                </ul>
-                <span class="course-detail">老师：高峰</span>
-                <span class="course-detail" >类别：专业课</span>
-                <span class="course-detail">评价：</span>
-                <div class="course-comment">
-                    <p>软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件开发工具、系统平台、标准、设计模式等方面。
-                        在现代社会中，软件应用于多个方面。典型的软件有电子邮件、嵌入式系统、人机界面、办公套件、操作系统、编译器、数据库、游戏等。同时，各个行业几乎都有计算机软件的应用，如工业、农业、银行、航空、政府部门等。这些应用促进了经济和社会的发展，也提高了工作效率和生活效率 。
-                    </p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </c:forEach>
     </div>
 
 </div>

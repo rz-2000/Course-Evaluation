@@ -41,8 +41,20 @@ public class IndexServlet extends HttpServlet {
         System.out.println("username:"+username);
         User user = userService.findByUsername(username);
         System.out.println("realName:"+user.getRealName());
-        request.setAttribute("user",user);
+        request.setAttribute("user", user);
         request.getRequestDispatcher("info.jsp").forward(request, response);
+    }
+
+    protected void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String keywords = request.getParameter("keywords");
+        String idStr = request.getParameter("id");
+        Integer userId = Integer.parseInt(idStr);
+        System.out.println("keywords:"+keywords);
+        List<Course> courseList = courseService.search(keywords);
+        User user = userService.findById(userId);
+        request.setAttribute("courseList", courseList);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     @Override
@@ -58,6 +70,8 @@ public class IndexServlet extends HttpServlet {
             allInfo(request, response);
         } else if ("info".equals(method)){
             info(request, response);
+        } else if ("search".equals(method)){
+            search(request, response);
         }
     }
 }
