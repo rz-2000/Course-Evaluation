@@ -184,7 +184,9 @@
         }
         .announcement-title{
             margin: 10px;
-
+        }
+        .announcement-content{
+            margin: 10px;
         }
     </style>
 </head>
@@ -234,7 +236,7 @@
                             <c:forEach items="${bestCourseList}" var="item">
                                 <tr>
                                     <td class="order">${count+1}</td>
-                                    <td class="title"><a href="/CourseServlet?">${item.name}</a></td>
+                                    <td class="title"><a href="reviews-page.jsp">${item.name}</a></td>
                                 </tr>
                                 <c:set var="count" value="${count+1}"></c:set>
                             </c:forEach>
@@ -259,8 +261,8 @@
                     <c:forEach items="${hotCourseList}" var="item">
                     <c:if test="${count%4==0}"><tr></c:if>
                     <div class="hot-comment-card">
-                        <a href="#"><img src="${item.image}" alt="" class="cover"></a>
-                        <a href="" class="card-hd">${item.name}</a>
+                        <a href="reviews-page.jsp"><img src="${item.image}" alt="" class="cover"></a>
+                        <a href="reviews-page.jsp" class="card-hd">${item.name}</a>
                         <ul class="star-list">
                             <li><img src="images/评星0.png" alt="" class="star"></li>
                             <li><img src="images/评星0.png" alt="" class="star"></li>
@@ -277,7 +279,7 @@
             <div class="col-md-4">
                 <div class="announcement">
                     <h4 class="announcement-title">通知</h4>
-
+                    <p class="announcement-content">时间不多啦，大家加油！</p>
                 </div>
             </div>
         </div>

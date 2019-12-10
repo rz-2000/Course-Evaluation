@@ -170,6 +170,38 @@
             background-color: #cbcbcb;
             border-color: #a2a2a2;
         }
+        .modify-img{
+            display: none;
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 999;
+        }
+        #submit-img{
+            display: flex;
+            flex-direction: column;
+        }
+        #submit-img #img{
+            margin: 15px auto;
+            width:150px;
+            height:150px;
+        }
+        #img img{
+            width:150px;
+            height:150px;
+        }
+        .close-img{
+            color: #999;
+            font-size: 16px;
+            float: right;
+            cursor: pointer;
+            width:24px;
+            height:24px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -228,6 +260,24 @@
                     </ul>
                 </div>
         </div>
+    <!--修改头像弹窗-->
+    <div class="modify-img">
+        <div class="dialog_cont">
+            <div class="box">
+                <h3 class="title">修改头像</h3>
+                <span class="close-img">×</span>
+            </div>
+            <div style="clear: both">
+             <hr>
+             </div>
+            <form action="" id="submit-img">
+                <input type="file" onchange="showImg(this)">
+                <img src="images/add.png" alt="" id="img">
+                <button class="btn btn-primary" type="submit">上传</button>
+            </form>
+        </div>
+    </div>
+    <!--修改资料弹窗-->
         <div class="dialog">
             <div class="dialog_cont">
                 <div class="box">
@@ -349,19 +399,48 @@
         var left = window_length/2 - profile_length/2;
         $("#profile").animate({left: left},500,"swing");
     });
+    // 修改头像操作
+    var modify = document.getElementsByClassName("modify")[0];
+    var modify_img = document.getElementsByClassName("modify-img")[0];
+    var close_img = document.getElementsByClassName("close-img")[0];
+    modify.onclick = function () {
+        console.log("click");
+        modify_img.style.display = "block";
+    };
+    close_img.onclick = closeModify;
+    function closeModify() {
+    modify_img.style.display = "none";
+    }
+    // 预览图片
+    function showImg(obj) {
+    var file=$(obj)[0].files[0];    //获取文件信息
+    if(file)
+    {
+    var reader=new FileReader();  //调用FileReader
+    reader.readAsDataURL(file); //将文件读取为 DataURL(base64)
+    reader.onload=function(evt){   //读取操作完成时触发。
+    $("#img").attr('src',evt.target.result);  //将img标签的src绑定为DataURL
+    };
+    }
+    else{
+    alert("上传失败");
+    }
+    }
+    // 修改资料操作
     var mod = document.getElementsByClassName("mod")[0];
     var dialog =document.getElementsByClassName("dialog")[0];
     mod.onclick = function () {
-        dialog.style.display  = "block";
+    dialog.style.display  = "block";
     };
+
     var close = document.getElementsByClassName("close")[0];
     var cancel = document.getElementById("cancel");
     close.onclick = closeDialog;
     cancel.onclick = closeDialog;
-
     function closeDialog() {
-        dialog.style.display = "none";
+    dialog.style.display = "none";
     }
+
 </script>
 </body>
 </html>

@@ -143,7 +143,7 @@
             <section class="search-list">
                 <a href=""><img src="images/temp.jpg" alt=""class="search-img"></a>
                 <div class="search-detail">
-                    <a href="#" class="course-name">${item.name}</a>
+                    <a href="reviews-page.jsp" class="course-name">${item.name}</a>
                     <ul class="star-list">
                         <li><img src="images/评星0.png" alt="" class="star"></li>
                         <li><img src="images/评星0.png" alt="" class="star"></li>

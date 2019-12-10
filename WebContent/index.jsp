@@ -184,7 +184,9 @@
         }
         .announcement-title{
             margin: 10px;
-
+        }
+        .announcement-content{
+            margin: 10px;
         }
     </style>
 </head>
@@ -277,7 +279,7 @@
             <div class="col-md-4">
                 <div class="announcement">
                     <h4 class="announcement-title">通知</h4>
-
+                    <p class="announcement-content">时间不多啦，大家加油！</p>
                 </div>
             </div>
         </div>
