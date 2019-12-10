@@ -189,7 +189,7 @@
                 <div class="line"></div>
                 <li><a href="#">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="">退出</a></li>
+                <li><a href="login.jsp">退出</a></li>
             </ul>
         </div>
     </div>
@@ -249,8 +249,14 @@
                     <div class="change_message">
                         <span class="left_input">性别：</span>
                         <select name="sex" id="sex">
-                            <option value="1" selected>男</option>
-                            <option value="2">女</option>
+                            <c:if test="${user.sex eq 1}">
+                                <option value="1" selected>男</option>
+                                <option value="2">女</option>
+                            </c:if>
+                            <c:if test="${user.sex eq 2}">
+                                <option value="1" >男</option>
+                                <option value="2" selected>女</option>
+                            </c:if>
                         </select>
                     </div>
                     <div class="change_message">
@@ -264,11 +270,41 @@
                     <div class="change_message">
                         <span class="left_input">年级：</span>
                         <select name="grade" id="grade">
-                            <option value="1" selected>2015级</option>
-                            <option value="2">2016级</option>
-                            <option value="3">2017级</option>
-                            <option value="4">2018级</option>
-                            <option value="5">2019级</option>
+                        <c:if test="${user.grade eq 2015}">
+                                <option value="1" selected>2015级</option>
+                                <option value="2">2016级</option>
+                                <option value="3">2017级</option>
+                                <option value="4">2018级</option>
+                                <option value="5">2019级</option>
+                        </c:if>
+                        <c:if test="${user.grade eq 2016}">
+                                <option value="1">2015级</option>
+                                <option value="2" selected>2016级</option>
+                                <option value="3">2017级</option>
+                                <option value="4">2018级</option>
+                                <option value="5">2019级</option>
+                        </c:if>
+                        <c:if test="${user.grade eq 2017}">
+                                <option value="1">2015级</option>
+                                <option value="2">2016级</option>
+                                <option value="3" selected>2017级</option>
+                                <option value="4">2018级</option>
+                                <option value="5">2019级</option>
+                        </c:if>
+                        <c:if test="${user.grade eq 2018}">
+                                <option value="1">2015级</option>
+                                <option value="2">2016级</option>
+                                <option value="3">2017级</option>
+                                <option value="4" selected>2018级</option>
+                                <option value="5">2019级</option>
+                        </c:if>
+                        <c:if test="${user.grade eq 2019}">
+                                <option value="1">2015级</option>
+                                <option value="2">2016级</option>
+                                <option value="3">2017级</option>
+                                <option value="4">2018级</option>
+                                <option value="5" selected>2019级</option>
+                        </c:if>
                         </select>
                     </div>
                     <div class="change_message">
