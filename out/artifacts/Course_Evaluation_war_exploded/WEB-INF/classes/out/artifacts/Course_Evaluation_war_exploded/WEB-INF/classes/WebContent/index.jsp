@@ -236,7 +236,7 @@
                             <c:forEach items="${bestCourseList}" var="item">
                                 <tr>
                                     <td class="order">${count+1}</td>
-                                    <td class="title"><a href="reviews-page.jsp">${item.name}</a></td>
+                                    <td class="title"><a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}">${item.name}</a></td>
                                 </tr>
                                 <c:set var="count" value="${count+1}"></c:set>
                             </c:forEach>
@@ -261,8 +261,8 @@
                     <c:forEach items="${hotCourseList}" var="item">
                     <c:if test="${count%4==0}"><tr></c:if>
                     <div class="hot-comment-card">
-                        <a href="reviews-page.jsp"><img src="${item.image}" alt="" class="cover"></a>
-                        <a href="reviews-page.jsp" class="card-hd">${item.name}</a>
+                        <a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}"><img src="${item.image}" alt="" class="cover"></a>
+                        <a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}" class="card-hd">${item.name}</a>
                         <ul class="star-list">
                             <li><img src="images/评星0.png" alt="" class="star"></li>
                             <li><img src="images/评星0.png" alt="" class="star"></li>

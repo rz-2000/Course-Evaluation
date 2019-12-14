@@ -36,7 +36,7 @@ public class EvaluationServlet extends HttpServlet {
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String evaluation = request.getParameter("evaluation");
         Integer star = Integer.valueOf(request.getParameter("star"));
-        Boolean learned = Boolean.valueOf(request.getParameter("learned"));
+        Integer learned = Integer.valueOf(request.getParameter("learned"));
         Evaluation eva = new Evaluation();
         eva.setContent(evaluation);
         eva.setStar(star);

@@ -18,7 +18,7 @@ public class EvaluationDao {
     // 添加
     public int add(Evaluation evaluation) {
         Connection conn = DBUtil.getConn();
-        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,learned) values(?,?,?,?,?,?,?)";
+        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,support, learned) values(?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
@@ -29,8 +29,8 @@ public class EvaluationDao {
             pstmt.setInt(4, evaluation.getStar());
             pstmt.setString(5, evaluation.getContent());
             pstmt.setString(6, evaluation.getTime());
-           // pstmt.setInt(7, evaluation.getSupport());
-            pstmt.setBoolean(7, evaluation.isLearned());
+            pstmt.setInt(7, evaluation.getSupport());
+            pstmt.setInt(8, evaluation.getLearned());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -87,8 +87,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-               // evaluation.setSupport(rSet.getInt(7));
-                evaluation.setLearned(rSet.getBoolean(7));
+                evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getInt(8));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,8 +140,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-                //evaluation.setSupport(rSet.getInt(7));
-                evaluation.setLearned(rSet.getBoolean(7));
+                evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getInt(8));
                 evaluationList.add(evaluation);
             }
         } catch (SQLException e) {
@@ -215,9 +215,9 @@ public class EvaluationDao {
         // 获取连接
         Connection conn = DBUtil.getConn();
         // sql语句
-        String sql = "SELECT " + "o.id," + "o.user_id," + "m.id," + " o.course_id,"
-                + "o.star,"  + "o.time," + "o.support "+ "FROM "
-                + "evaluation o,user u,course m " + "WHERE " + "o.user_id = u.id && o.course_id = m.id limit ?,?";
+        String sql = "SELECT " + "e.id," + "e.user_id," + "c.id," + " e.course_id,"
+                + "e.star,"  + "e.time," + "e.support "+ "FROM "
+                + "evaluation e,user u,course c " + "WHERE " + "e.user_id = u.id && e.course_id = c.id limit ?,?";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         ArrayList<Evaluation> list = new ArrayList<Evaluation>();
@@ -234,8 +234,8 @@ public class EvaluationDao {
                 evaluation.setContent(rSet.getString(4));
                 evaluation.setStar(rSet.getInt(5));
                 evaluation.setTime(rSet.getString(6));
-                //evaluation.setSupport(rSet.getInt(7));
-                evaluation.setLearned(rSet.getBoolean(7));
+                evaluation.setSupport(rSet.getInt(7));
+                evaluation.setLearned(rSet.getInt(8));
                 list.add(evaluation);
             }
             page.setList(list);

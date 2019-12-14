@@ -12,10 +12,10 @@ public class Evaluation {
     private String content;
     private String time;
     private Integer support;
-    private boolean learned;
+    private Integer learned;
 
     public Evaluation(Integer id, Integer userId, Integer courseId, Integer star, String content,
-                      String time, Integer support,boolean learned) {
+                      String time, Integer support,Integer learned) {
 
         this.id = id;
         this.userId = userId;
@@ -85,7 +85,7 @@ public class Evaluation {
         this.support = support;
     }
 
-    public boolean isLearned() { return learned; }
+    public Integer getLearned() { return learned; }
 
-    public void setLearned(boolean learned) { this.learned = learned; }
+    public void setLearned(Integer learned) { this.learned = learned; }
 }

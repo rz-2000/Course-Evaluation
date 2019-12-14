@@ -120,10 +120,10 @@
 							<figure>
 								<img src="img/computernet.jpg" alt="">
 							</figure>
-							<small>王老师：专业课</small>
-							<h1>计算机网络</h1>
+							<small>${course.teacher}：${course.type}</small>
+							<h1>${course.name}</h1>
 
-							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>4.50/5.00 - 基于234 个评分</em></span>
+							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>${course.score}/10.0 - 基于${course.total} 个评分</em></span>
 						</div>
 						<div class="col-lg-4 review_detail">
 							<div class="row">
@@ -198,8 +198,8 @@
 						</div>
 						<!-- /rating_submit -->
 						<div>是否上过该课程:
-							<label><input type="radio" name="learned" value="y">上过</label>
-							<label><input type="radio" name="learned" value="n">没上过</label>
+							<label><input type="radio" name="learned" value="1">上过</label>
+							<label><input type="radio" name="learned" value="0">没上过</label>
 						<div class="form-group">
 							
 							<label>评论内容：</label>
