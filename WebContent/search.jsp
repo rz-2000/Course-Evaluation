@@ -102,7 +102,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo&username=${user.username}" >首页</a></span>
         <span class="nav_list"><a href="#">课程</a></span>
     </div>
     <div class="nav-right">
@@ -113,9 +113,9 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info&username=${user.username}">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
+                <li><a href="login.jsp">退出</a></li>
             </ul>
         </div>
     </div>

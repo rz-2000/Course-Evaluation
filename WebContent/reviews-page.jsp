@@ -206,7 +206,7 @@
 							<textarea class="form-control" style="height: 180px;" placeholder="请在这里写在你的评论（300字内）"></textarea>
 						</div>
 						
-						<a href="confirm.html" class="btn_1">提交</a>
+						<a href="#" class="btn_1">提交</a>
 					</div>
 				</div>
 			</div>
