@@ -61,7 +61,7 @@ public class UserServlet extends HttpServlet {
         // 跳转到登录页面
         PrintWriter out = response.getWriter();
         out.print(
-                "<script>" + "window.parent.location.href='" + request.getContextPath() + "/index.jsp';" + "</script>");
+                "<script>" + "window.parent.location.href='" + request.getContextPath() + "/login.jsp';" + "</script>");
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -141,7 +141,7 @@ public class UserServlet extends HttpServlet {
                     + "/login.jsp';" + "</script>");
         } else {
             out.print("<script>" + "alert('注册失败');" + "window.location.href='" + request.getContextPath()
-                    + "/reg.jsp';" + "</script>");
+                    + "/register.jsp';" + "</script>");
         }
     }
     @Override
