@@ -1,10 +1,16 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%> 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
+
+  
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/nav-footer.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="VANNO - Premium directory consumer reviews and listings template by Ansonika">
@@ -34,82 +40,28 @@
 		
 	<div id="page">
 		
-	<header class="header menu_fixed">
-		<div id="logo">
-			<a href="index.html">
-			
-				<h3>海大优选</h3>
-			</a>
-		</div>
-		<ul id="top_menu">
-			<li><a href="write-review.html" class="btn_top">写评论</a></li>
-			<!--<li><a href="companies-landing.html" class="btn_top company"></a></li>-->
-			<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
-		</ul>
-		<!-- /top_menu -->
-		<a href="#menu" class="btn_mobile">
-			<div class="hamburger hamburger--spin" id="hamburger">
-				<div class="hamburger-box">
-					<div class="hamburger-inner"></div>
-				</div>
-			</div>
-		</a>
-		<!-- /btn_mobile -->
-		<nav id="menu" class="main-menu">
-			<ul>
-				<li><span><a href="#0">主页</a></span>
-					<ul>
-						<li><a href="index.html">Home version 1</a></li>
-						<li><a href="index-2.html">Home version 2 (GDPR)</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">评论</a></span>
-					<ul>
-						<li>
-							<span><a href="#0">Layouts</a></span>
-							<ul>
-								<li><a href="grid-listings-filterstop.html">Grid listings 1</a></li>
-								<li><a href="grid-listings-filterscol.html">Grid listings 2</a></li>
-								<li><a href="row-listings-filterscol.html">Row listings</a></li>
-							</ul>
-						</li>
-						<li><a href="reviews-page.html">Reviews page</a></li>
-						<li><a href="write-review.html">Write a review</a></li>
-						<li><a href="confirm.html">Confirm page</a></li>
-						<li><a href="user-dashboard.html">User Dashboard</a></li>
-						<li><a href="user-settings.html">User Settings</a></li>
-					</ul>
-				</li>
-				<li><span><a href="pricing.html">推荐课程</a></span></li>
-				<li><span><a href="#0">我的</a></span>
-					<ul>
-						<li><a href="companies-landing.html">Compannies Landing Page</a></li>
-						<li><a href="all-categories.html">Companies Categories Page</a></li>
-						<li><a href="category-companies-listings-filterstop.html">Companies Listing Page</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="login.html">Login</a></li>
-						<li><a href="register.html">Register</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="help.html">Help Section</a></li>
-						<li><a href="faq.html">Faq Section</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
-						<li>
-							<span><a href="#0">Icon Packs</a></span>
-							<ul>
-								<li><a href="icon-pack-1.html">Icon pack 1</a></li>
-								<li><a href="icon-pack-2.html">Icon pack 2</a></li>
-								<li><a href="icon-pack-3.html">Icon pack 3</a></li>
-								<li><a href="icon-pack-4.html">Icon pack 4</a></li>
-							</ul>
-						</li>
-						<li><a href="404.html">404 page</a></li>
-					</ul>
-				</li>
-				
-				<li class="d-block d-sm-none"><span><a href="#0" class="btn_top">写评论</a></span></li>
-			</ul>
-		</nav>
-	</header>
+	<header id="navigator">
+    <div class="nav-left">
+        <span class="nav_name">海大优选</span>
+        <span class="nav_list"><a href="#" >首页</a></span>
+        <span class="nav_list"><a href="#">课程</a></span>
+    </div>
+    <div class="nav-right">
+        <div id="drop-name">
+            <img src="images/duck.jpg" alt="">
+            <span>杨欧牟</span>
+        </div>
+        <div>
+            <ul id="drop-list">
+                <div class="line"></div>
+                <li><a href="#">个人中心</a></li>
+                <div class="line"></div>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
 	<!-- /header -->
 	
 	<main>
@@ -119,57 +71,57 @@
 					<div class="row">
 						<div class="col-lg-8">
 							<figure>
-								<img src="${course.image}" alt="">
+								<img src="img/computernet.jpg" alt="">
 							</figure>
-							<small>${course.teacher}：${course.type}</small>
-							<h1>${course.name}</h1>
+							<small>王老师：专业课</small>
+							<h1>计算机网络</h1>
 
-							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>${course.score}/10.0 - 基于${course.total} 个评分</em></span>
+							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>4.50/5.00 - 基于234 个评分</em></span>
 						</div>
 						<div class="col-lg-4 review_detail">
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>5星 ${course.fiveStar}</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>5星</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>4星 ${course.fourStar}</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>4星</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>3星 ${course.threeStar}</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>3星</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>2星 ${course.twoStar}</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>2星</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress last">
-										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>1星 ${course.oneStar}</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>1星</strong></div>
 							</div>
 							<!-- /row -->
 						</div>
@@ -179,14 +131,17 @@
 			</div>
 		</div>
 		<!-- /reviews_summary -->
-			
+		
 		<div class="container margin_60_35">
 			<div class="row">
 				<div class="col-lg-8">
+					
 					<div class="box_general write_review">
 						<h1>写课程评论</h1>
 						<div class="rating_submit">
 							<div class="form-group">
+							<form action="/review.asp">
+						<fieldset>
 							<label class="d-block">评星</label>
 							<span class="rating">
 								<input type="radio" class="rating-input" id="5_star" name="rating-input" value="5 Stars"><label for="5_star" class="rating-star"></label>
@@ -199,20 +154,22 @@
 						</div>
 						<!-- /rating_submit -->
 						<div>是否上过该课程:
-							<label><input type="radio" name="learned" value="1">上过</label>
-							<label><input type="radio" name="learned" value="0">没上过</label>
+							<label><input type="radio" name="learned" value="y">上过</label>
+							<label><input type="radio" name="learned" value="n">没上过</label>
 						<div class="form-group">
 							
 							<label>评论内容：</label>
 							<textarea class="form-control" style="height: 180px;" placeholder="请在这里写在你的评论（300字内）"></textarea>
 						</div>
 						
-						<a href="#" class="btn_1">提交</a>
+						<input type="submit" value="提交">
+						</fieldset>
+	                    </form>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="container margin_60_35">
 			<div class="row">
 				<div class="col-lg-8">
@@ -349,7 +306,7 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-		</div>
+		
 	</main>
 	<!--/main-->
 	
@@ -413,4 +370,10 @@
 	<script src="assets/validate.js"></script>
 
 </body>
+<footer>
+    <div class="line"></div>
+    <div class="copyright">
+        Copyright © 2019 大碗宽面 All Rights Reserved
+    </div>
+</footer>
 </html>
