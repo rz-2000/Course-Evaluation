@@ -195,17 +195,17 @@
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
         <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
-        <span class="nav_list"><a href="#">课程</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/CourseServlet?method=list">课程</a></span>
     </div>
     <div class="nav-right">
         <div id="drop-name">
-            <img src="images/duck.jpg" alt="">
+            <img src="${user.profilePhoto}" alt="">
             <span>${username}</span>
         </div>
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="${pageContext.request.contextPath}/IndexServlet?method=info&username=${username}">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info&username=${username}">个人中心</a></li>
                 <div class="line"></div>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
@@ -218,7 +218,7 @@
         <div class="row">
             <div class="col-md-8 search">
                 <h1 class="slogan">海大优选</h1>
-                <form action="${pageContext.request.contextPath}/IndexServlet?method=search" method="post">
+                <form action="${pageContext.request.contextPath}/SearchServlet?method=search" method="post">
                     <input name="keywords" type="text" class="search-line" placeholder="请输入您想找的课程">
                     <input name="id" type="hidden" value="${user.id}">
                     <button class="search-button" type="submit">搜索</button>
@@ -309,5 +309,29 @@
     </div>
 </footer>
 <script src="js/tools.js"></script>
+<script type="text/javascript">
+    // 控制评星显示
+    var star_lists = document.getElementsByClassName("star-list");
+    for(var i = 0; i<star_lists.length; i++) {
+        var text_score = star_lists[i].getElementsByClassName("score")[0];
+        var score = text_score.innerText / 2;
+        var score_int = Math.floor(score);
+        if (score_int == 0) {
+            text_score.innerText = "暂无评分";
+            text_score.style.color = "grey";
+            text_score.style.fontSize = "13px";
+        } else {
+            var star_lis = star_lists[i].getElementsByTagName("img");
+            var j = 0;
+            while (j < score_int) {
+                star_lis[j].src = "images/评星1.png";
+                j++;
+            }
+            if (score > score_int) {
+                star_lis[j].src = "images/评星0.5.png";
+            }
+        }
+    }
+</script>
 </body>
 </html>

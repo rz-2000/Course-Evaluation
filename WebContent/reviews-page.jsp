@@ -119,7 +119,7 @@
 					<div class="row">
 						<div class="col-lg-8">
 							<figure>
-								<img src="img/computernet.jpg" alt="">
+								<img src="${course.image}" alt="">
 							</figure>
 							<small>${course.teacher}：${course.type}</small>
 							<h1>${course.name}</h1>
@@ -130,46 +130,46 @@
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>5星</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>5星 ${course.fiveStar}</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>4星</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>4星 ${course.fourStar}</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>3星</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>3星 ${course.threeStar}</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>2星</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>2星 ${course.twoStar}</strong></div>
 							</div>
 							<!-- /row -->
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress last">
-										<div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
-								<div class="col-lg-3 col-3 text-right"><strong>1星</strong></div>
+								<div class="col-lg-3 col-3 text-right"><strong>1星 ${course.oneStar}</strong></div>
 							</div>
 							<!-- /row -->
 						</div>

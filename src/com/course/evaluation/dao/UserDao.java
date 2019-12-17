@@ -109,6 +109,7 @@ public class UserDao {
                 user.setSex(rSet.getInt(8));
                 user.setPhoneNumber(rSet.getString(9));
                 user.setEmail(rSet.getString(10));
+                user.setProfilePhoto(rSet.getString(11));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -183,6 +184,7 @@ public class UserDao {
                 user.setSex(rSet.getInt(8));
                 user.setPhoneNumber(rSet.getString(9));
                 user.setEmail(rSet.getString(10));
+                user.setProfilePhoto(rSet.getString(11));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

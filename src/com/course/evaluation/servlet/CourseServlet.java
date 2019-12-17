@@ -2,6 +2,7 @@ package com.course.evaluation.servlet;
 import	java.util.ArrayList;
 
 import com.course.evaluation.po.Course;
+import com.course.evaluation.po.User;
 import com.course.evaluation.service.CourseService;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,10 @@ public class CourseServlet extends HttpServlet {
         request.getRequestDispatcher("reviews-page.jsp").forward(request,response);
     }
 
+    protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("course-list.jsp").forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -40,6 +45,8 @@ public class CourseServlet extends HttpServlet {
         String method = request.getParameter("method");
         if ("showCourse".equals(method)){
             showCourse(request, response);
+        } else if ("list".equals(method)){
+            list(request, response);
         }
     }
 }

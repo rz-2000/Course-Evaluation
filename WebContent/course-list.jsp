@@ -83,20 +83,20 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="index.html" >首页</a></span>
-        <span class="nav_list"><a href="#">课程</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/CourseServlet?method=list">课程</a></span>
     </div>
     <div class="nav-right">
         <div id="drop-name">
-            <img src="images/duck.jpg" alt="">
-            <span>杨欧牟</span>
+            <img src="${user.profilePhoto}" alt="">
+            <span>${user.username}</span>
         </div>
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="#">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
         </div>
     </div>
@@ -106,9 +106,9 @@
     <div class="container">
         <div class="row">
             <div class="m-auto">
-                <form action="">
+                <form action="${pageContext.request.contextPath}/IndexServlet?method=search" method="post">
                     <input type="text" class="search-input" placeholder="请输入您想搜索的课程">
-                    <button type="submit" class="search-button">搜索</button>
+                    <input type="submit" class="search-button" value="搜索">
                 </form>
             </div>
         </div>

@@ -85,6 +85,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '1', '1', '张三', '17020001000', '计算机科学与技术', 2017, 1, '17811112222', 'test@test.com', NULL);
+INSERT INTO `user` VALUES (1, '1', '1', '张三', '17020001000', '计算机科学与技术', 2017, 1, '17811112222', 'test@test.com', 'images/duck.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;

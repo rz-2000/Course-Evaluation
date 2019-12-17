@@ -16,25 +16,21 @@ import java.util.List;
 /**
  * @author 曾哲
  */
-@WebServlet(name = "IndexServlet")
-public class IndexServlet extends HttpServlet {
-
+@WebServlet(name = "SearchServlet")
+public class SearchServlet extends HttpServlet {
     private CourseService courseService = new CourseService();
     private UserService userService = new UserService();
 
-    protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        System.out.println("username:"+username);
-        List<Course> hotCourseList;
-        List<Course> bestCourseList;
-        hotCourseList = courseService.findAllOrderByTotal();
-        bestCourseList = courseService.findAllOrderByScore();
-        request.setAttribute("hotCourseList", hotCourseList);
-        request.setAttribute("bestCourseList", bestCourseList);
-        User user = userService.findByUsername(username);
-        request.setAttribute("username",username);
-        request.setAttribute("user",user);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+    protected void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String keywords = request.getParameter("keywords");
+        String idStr = request.getParameter("id");
+        Integer userId = Integer.parseInt(idStr);
+        System.out.println("keywords:"+keywords);
+        List<Course> courseList = courseService.search(keywords);
+        User user = userService.findById(userId);
+        request.setAttribute("courseList", courseList);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     @Override
@@ -46,8 +42,8 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String method = request.getParameter("method");
         System.out.println("method:"+method);
-        if ("allInfo".equals(method)){
-            allInfo(request, response);
+        if ("search".equals(method)){
+            search(request, response);
         }
     }
 }

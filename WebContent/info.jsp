@@ -209,19 +209,19 @@
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
         <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo&username=${user.username}" >首页</a></span>
-        <span class="nav_list"><a href="#">课程</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/CourseServlet?method=list">课程</a></span>
     </div>
     <div class="nav-right">
         <div id="drop-name">
-            <img src="images/duck.jpg" alt="">
+            <img src="${user.profilePhoto}" alt="">
             <span>${user.username}</span>
         </div>
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="#">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info">个人中心</a></li>
                 <div class="line"></div>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
         </div>
     </div>
@@ -236,7 +236,7 @@
         </div>
         <div class="row">
                 <div class="col-md-2 left_c">
-                    <img src="images/duck.jpg" alt="duck" class="img-responsive" width="150" height="150">
+                    <img src="${user.profilePhoto}" alt="duck" class="img-responsive" width="150" height="150">
                     <p class="modify">修改头像</p>
                 </div>
                 <div class="col-md-10 right_c">

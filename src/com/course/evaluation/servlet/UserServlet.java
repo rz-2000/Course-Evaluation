@@ -4,7 +4,6 @@ import com.course.evaluation.po.User;
 import com.course.evaluation.service.UserService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +16,8 @@ import java.io.PrintWriter;
  */
 public class UserServlet extends HttpServlet {
 
-    private UserService usersService = new UserService();
+    private UserService userService = new UserService();
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("username");
         String pwd = request.getParameter("password");
         // 登录
-        User user = usersService.login(name, pwd);
+        User user = userService.login(name, pwd);
         // 成功——/index.jsp
         if (user != null) {
             // 将用户信息存放在session中
@@ -98,7 +98,7 @@ public class UserServlet extends HttpServlet {
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
 //        user.setProfilePhoto(profilePhoto);
-        int result = usersService.update(id, user);
+        int result = userService.update(id, user);
         PrintWriter out = response.getWriter();
         if (result == 1) {
             HttpSession session = request.getSession();
@@ -116,25 +116,14 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String realName = request.getParameter("realName");
         String number = request.getParameter("number");
-        /*String major = request.getParameter("major");
-        Integer grade = Integer.valueOf(request.getParameter("grade"));
-        Integer sex = Integer.valueOf(request.getParameter("sex"));
-        String phoneNumber = request.getParameter("phoneNumber");
-        String email = request.getParameter("email");
-        String profilePhoto = request.getParameter("profilePhoto");*/
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setRealName(realName);
         user.setNumber(number);
-        /*user.setMajor(major);
-        user.setGrade(grade);
-        user.setSex(sex);
-        user.setPhoneNumber(phoneNumber);
-        user.setEmail(email);
-        user.setProfilePhoto(profilePhoto);*/
-        int result = usersService.reg(user);
+
+        int result = userService.reg(user);
         PrintWriter out = response.getWriter();
         if (result == 1) {
             out.print("<script>" + "alert('注册成功');" + "window.location.href='" + request.getContextPath()
@@ -144,6 +133,16 @@ public class UserServlet extends HttpServlet {
                     + "/register.jsp';" + "</script>");
         }
     }
+
+    protected void info(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        System.out.println("username:"+username);
+        User user = userService.findByUsername(username);
+        System.out.println("realName:"+user.getRealName());
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("info.jsp").forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -161,6 +160,8 @@ public class UserServlet extends HttpServlet {
             update(request, response);
         } else if ("reg".equals(method)) {
             reg(request, response);
+        } else if ("info".equals(method)){
+            info(request, response);
         }
     }
 }
