@@ -1,4 +1,5 @@
-<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%> 
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -348,7 +349,7 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-		
+		</div>
 	</main>
 	<!--/main-->
 	
