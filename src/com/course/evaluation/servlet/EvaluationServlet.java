@@ -31,10 +31,19 @@ public class EvaluationServlet extends HttpServlet {
         Integer userId = Integer.valueOf(request.getParameter("userId"));
         Integer courseId = Integer.valueOf(request.getParameter("courseId"));
         Integer star = Integer.valueOf(request.getParameter("star"));
+        switch (star){
+            case 1:star=1;break;
+            case 2:star=2;break;
+            case 3:star=3;break;
+            case 4:star=4;break;
+            case 5:star=5;break;
+            default:break;
+        }
         String content = request.getParameter("content");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
         String time = simpleDateFormat.format(new Date());
         Integer learned = Integer.valueOf(request.getParameter("learned"));
+
         Evaluation eva = new Evaluation();
         eva.setUserId(userId);
         eva.setCourseId(courseId);
@@ -43,11 +52,12 @@ public class EvaluationServlet extends HttpServlet {
         eva.setTime(time);
         eva.setSupport(0);
         eva.setLearned(learned);
+
         int result = evaluationService.add(eva);
         PrintWriter out = response.getWriter();
         if (result == 1) {
             HttpSession session = request.getSession();
-            session.removeAttribute("content");
+            session.removeAttribute("evaluation");
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
                     + "/ReviewPageServlet?method=allInfo&id="+courseId+"';" + "</script>");
         } else {
