@@ -71,18 +71,18 @@
 					<div class="row">
 						<div class="col-lg-8">
 							<figure>
-								<img src="img/computernet.jpg" alt="">
+								<img src="${course.image}" alt="">
 							</figure>
 							<small>${course.teacher}:${course.type}</small>
 							<h1>${course.name}</h1>
 
-							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>${course.score}/10.00 - 基于${course.total} 个评分</em></span>
+							<span class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star empty"></i><em>${course.score}/10.0 - 基于${course.total} 个评分</em></span>
 						</div>
 						<div class="col-lg-4 review_detail">
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fiveStar*100/course.total}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<div class="col-lg-3 col-3 text-right"><strong>5星</strong></div>
@@ -91,7 +91,7 @@
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.fourStar*100/course.total}%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<div class="col-lg-3 col-3 text-right"><strong>4星</strong></div>
@@ -100,7 +100,7 @@
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.threeStar*100/course.total}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<div class="col-lg-3 col-3 text-right"><strong>3星</strong></div>
@@ -109,7 +109,7 @@
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.twoStar*100/course.total}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<div class="col-lg-3 col-3 text-right"><strong>2星</strong></div>
@@ -118,7 +118,7 @@
 							<div class="row">
 								<div class="col-lg-9 col-9">
 									<div class="progress last">
-										<div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar" role="progressbar" style="width: ${course.oneStar*100/course.total}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<div class="col-lg-3 col-3 text-right"><strong>1星</strong></div>
@@ -165,8 +165,8 @@
 							</div>
 
 							<div class="dialog_footer">
-								<input name="id" type="hidden" value="${user.id}">
-								<input name="id" type="hidden" value="${course.id}">
+								<input name="userId" type="hidden" value="${user.id}">
+								<input name="courseId" type="hidden" value="${course.id}">
 								<input type="submit" name="submit" class="btn_1 rounded full-width" value="提交"/>
 							</div>
 						</fieldset>
@@ -196,9 +196,8 @@
 										<i class="icon_star"></i>
 										<em><a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo">${evaluation.star}</a></em>
 									</span>
-									<em>Published${evaluation.time}</em>
+									<em>Published ${evaluation.time}</em>
 								</div>
-								<h4>"推荐一本书"</h4>
 								<p>${evaluation.content}</p>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/EvaluationServlet?method=addSupport&username=${user.username}"><i class="icon_like_alt"></i><span>赞</span></a></li>
@@ -222,17 +221,6 @@
 					</div>
 					<!-- /pagination -->
 				</div>
-				<!-- /col -->
-				<div class="col-lg-4">
-					<div class="box_general company_info">
-						<h3>课程概述</h3>
-						<p> 以层次模型为线索，一层一章（数据链路层两章），将内容有机地串在一起；主要包括网络相关术语和协议（TCP/IP协议栈）、网络标准、OSI参考模型、局域网技术（重点以太网）、物理层、数据链路层、网络层、传输层和应用层的基本功能和基本原理；重点学习网络层内容，包括各种路由协议的工作原理及其特点。在学习理论的基础上，初步培养网络编程、网络抓包工具使用、交换机和路由器操作等实际动手能力。</p>
-						<p><strong>授课教师</strong><br>王二<br></p>
-						<p><strong>选课号</strong><br>1561321646</p>
-					
-						
-					</div>
-				</div>
 			</div>
 			<!-- /row -->
 		</div>
@@ -244,54 +232,7 @@
 	
 	</div>
 	<!-- page -->
-	
-	<!-- Sign In Popup -->
-	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-		<div class="small-dialog-header">
-			<h3>Sign In</h3>
-		</div>
-		<form>
-			<div class="sign-in-wrapper">
-				<a href="#0" class="social_bt facebook">Login with Facebook</a>
-				<a href="#0" class="social_bt google">Login with Google</a>
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="form-control" name="email" id="email">
-					<i class="icon_mail_alt"></i>
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-					<i class="icon_lock_alt"></i>
-				</div>
-				<div class="clearfix add_bottom_15">
-					<div class="checkboxes float-left">
-						<label class="container_check">Remember me
-						  <input type="checkbox">
-						  <span class="checkmark"></span>
-						</label>
-					</div>
-					<div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
-				</div>
-				<div class="text-center"><input type="submit" value="Log In" class="btn_1 full-width"></div>
-				<div class="text-center">
-					Don’t have an account? <a href="register.html">Sign up</a>
-				</div>
-				<div id="forgot_pw">
-					<div class="form-group">
-						<label>Please confirm login email below</label>
-						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-						<i class="icon_mail_alt"></i>
-					</div>
-					<p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
-					<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-				</div>
-			</div>
-		</form>
-		<!--form -->
-	</div>
-	<!-- /Sign In Popup -->
+
 	
 	<div id="toTop"></div><!-- Back to top button -->
 	

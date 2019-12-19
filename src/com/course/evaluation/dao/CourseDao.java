@@ -1,7 +1,6 @@
 package com.course.evaluation.dao;
 
 import com.course.evaluation.po.Course;
-import com.course.evaluation.po.User;
 import com.course.evaluation.util.DBUtil;
 
 import java.sql.Connection;
@@ -39,7 +38,7 @@ public class CourseDao {
                 course.setTwoStar(rSet.getInt(9));
                 course.setOneStar(rSet.getInt(10));
                 course.setTotal(rSet.getInt(11));
-                course.setScore(rSet.getFloat(12));
+                course.setScore(rSet.getDouble(12));
                 course.setImage(rSet.getString(13));
                 courseList.add(course);
             }
@@ -75,43 +74,7 @@ public class CourseDao {
                 course.setTwoStar(rSet.getInt(9));
                 course.setOneStar(rSet.getInt(10));
                 course.setTotal(rSet.getInt(11));
-                course.setScore(rSet.getFloat(12));
-                course.setImage(rSet.getString(13));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBUtil.closePstmt(pstmt);
-            DBUtil.closeConn(conn);
-        }
-        return course;
-    }
-
-    public Course findByNameAndTeacher(String name, String teacher){
-        Connection conn = DBUtil.getConn();
-        String sql = "select * from course where name = ? and teacher = ?;";
-        PreparedStatement pstmt = null;
-        ResultSet rSet = null;
-        Course course = null;
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, name);
-            pstmt.setString(2, teacher);
-            rSet = pstmt.executeQuery();
-            if (rSet.next()) {
-                course = new Course();
-                course.setId(rSet.getInt(1));
-                course.setName(rSet.getString(2));
-                course.setType(rSet.getString(3));
-                course.setMajor(rSet.getString(4));
-                course.setTeacher(rSet.getString(5));
-                course.setFiveStar(rSet.getInt(6));
-                course.setFourStar(rSet.getInt(7));
-                course.setThreeStar(rSet.getInt(8));
-                course.setTwoStar(rSet.getInt(9));
-                course.setOneStar(rSet.getInt(10));
-                course.setTotal(rSet.getInt(11));
-                course.setScore(rSet.getFloat(12));
+                course.setScore(rSet.getDouble(12));
                 course.setImage(rSet.getString(13));
             }
         } catch (SQLException e) {
@@ -203,13 +166,19 @@ public class CourseDao {
         //获取连接
         Connection conn = DBUtil.getConn();
         //sql语句
-        String sql = "update course set score=? where id=?";
+        String sql = "update course set five_star=?,four_star=?,three_star=?,two_star=?,one_star=?,total=?,score=? where id=?";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setDouble(1,course.getScore());
-            pstmt.setInt(2,course.getId());
+            pstmt.setInt(1,course.getFiveStar());
+            pstmt.setInt(2,course.getFourStar());
+            pstmt.setInt(3,course.getThreeStar());
+            pstmt.setInt(4,course.getTwoStar());
+            pstmt.setInt(5,course.getOneStar());
+            pstmt.setInt(6,course.getTotal());
+            pstmt.setDouble(7,course.getScore());
+            pstmt.setInt(8,course.getId());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

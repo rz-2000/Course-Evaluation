@@ -18,19 +18,18 @@ public class EvaluationDao {
     // 添加
     public int add(Evaluation evaluation) {
         Connection conn = DBUtil.getConn();
-        String sql = "insert into evaluation(id,user_id,course_id,star,content,time,support, learned) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into evaluation(user_id,course_id,star,content,time,support, learned) values(?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, evaluation.getId());
-            pstmt.setInt(2, evaluation.getUserId());
-            pstmt.setInt(3, evaluation.getCourseId());
-            pstmt.setInt(4, evaluation.getStar());
-            pstmt.setString(5, evaluation.getContent());
-            pstmt.setString(6, evaluation.getTime());
-            pstmt.setInt(7, evaluation.getSupport());
-            pstmt.setInt(8, evaluation.getLearned());
+            pstmt.setInt(1, evaluation.getUserId());
+            pstmt.setInt(2, evaluation.getCourseId());
+            pstmt.setInt(3, evaluation.getStar());
+            pstmt.setString(4, evaluation.getContent());
+            pstmt.setString(5, evaluation.getTime());
+            pstmt.setInt(6, evaluation.getSupport());
+            pstmt.setInt(7, evaluation.getLearned());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -215,8 +214,8 @@ public class EvaluationDao {
         // 获取连接
         Connection conn = DBUtil.getConn();
         // sql语句
-        String sql = "SELECT " + "e.id," + "e.user_id," + "c.id," + " e.course_id,"
-                + "e.star,"  + "e.time," + "e.support "+ "FROM "
+        String sql = "SELECT " + "e.id," + "u.id," + "c.id," + " e.content,"
+                + "e.star,"  + "e.time," + "e.support," + "e.learned " + "FROM "
                 + "evaluation e,user u,course c " + "WHERE " + "e.user_id = u.id && e.course_id = c.id limit ?,?";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;

@@ -27,7 +27,6 @@ CREATE TABLE `course`  (
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程的类型',
   `major` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程所属的专业',
   `teacher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '教授课程的教师',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程简介',
   `five_star` int(255) NOT NULL COMMENT '五星评分数量',
   `four_star` int(255) NOT NULL COMMENT '四星评分数量',
   `three_star` int(255) NOT NULL COMMENT '三星评分数量',
@@ -42,11 +41,11 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES (1, '课程1', '类型1', '专业1', '教师1','无',1, 2, 3, 4, 5, 15, 4.7, 'images/temp.jpg');
-INSERT INTO `course` VALUES (2, '课程2', '类型2', '专业2', '教师2','无', 5, 4, 3, 2, 1, 15, 7.3, 'images/temp.jpg');
-INSERT INTO `course` VALUES (3, '课程3', '类型3', '专业3', '教师3','无', 8, 3, 3, 3, 3, 20, 7.0, 'images/temp.jpg');
-INSERT INTO `course` VALUES (4, '课程4', '类型4', '专业4', '教师4','无', 10, 9, 3, 1, 2, 25, 7.9, 'images/temp.jpg');
-INSERT INTO `course` VALUES (5, '课程5', '类型5', '专业5', '教师5','无', 2, 1, 0, 0, 0, 3, 9.3, 'images/temp.jpg');
+INSERT INTO `course` VALUES (1, '课程1', '类型1', '专业1', '教师1',1, 2, 3, 4, 5, 15, 4.7, 'images/temp.jpg');
+INSERT INTO `course` VALUES (2, '课程2', '类型2', '专业2', '教师2', 5, 4, 3, 2, 1, 15, 7.3, 'images/temp.jpg');
+INSERT INTO `course` VALUES (3, '课程3', '类型3', '专业3', '教师3', 8, 3, 3, 3, 3, 20, 7.0, 'images/temp.jpg');
+INSERT INTO `course` VALUES (4, '课程4', '类型4', '专业4', '教师4', 10, 9, 3, 1, 2, 25, 7.9, 'images/temp.jpg');
+INSERT INTO `course` VALUES (5, '课程5', '类型5', '专业5', '教师5', 2, 1, 0, 0, 0, 3, 9.3, 'images/temp.jpg');
 
 -- ----------------------------
 -- Table structure for evaluation
@@ -55,11 +54,10 @@ DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE `evaluation`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL COMMENT '评论的用户的id',
-  `user_name` varchar(25) NOT NULL COMMENT '评论的用户的昵称',
   `course_id` int(10) NOT NULL COMMENT '评论的课程的id',
   `star` int(1) NOT NULL COMMENT '评星：1-5',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论的内容',
-  `time` datetime(0) NOT NULL COMMENT '评论的时间',
+  `time` varchar(255) NOT NULL COMMENT '评论的时间',
   `support` int(255) NOT NULL COMMENT '评论的点赞数',
   `learned` int(1) NULL DEFAULT NULL COMMENT '评论的用户是否学过本课程：0.否；1.是',
   PRIMARY KEY (`id`) USING BTREE

@@ -17,12 +17,13 @@ public class Course {
     private Integer total;
     private double score;
     private String image;
+    private String description;
 
     public Course() {
     }
 
     public Course(Integer id, String name, String type, String major, String teacher, Integer fiveStar, Integer fourStar,
-                  Integer threeStar, Integer twoStar, Integer oneStar, Integer total, float score, String image) {
+                  Integer threeStar, Integer twoStar, Integer oneStar, Integer total, float score, String image, String description) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -36,6 +37,7 @@ public class Course {
         this.total = total;
         this.score = score;
         this.image = image;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -140,5 +142,13 @@ public class Course {
 
     public void setImage(String image){
         this.image = image;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
     }
 }

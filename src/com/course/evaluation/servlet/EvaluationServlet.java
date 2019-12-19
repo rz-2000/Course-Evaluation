@@ -1,6 +1,7 @@
 package com.course.evaluation.servlet;
 
 import com.course.evaluation.po.Evaluation;
+import com.course.evaluation.service.CourseService;
 import com.course.evaluation.service.EvaluationService;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import java.util.Date;
 @WebServlet(name = "EvaluationServlet")
 public class EvaluationServlet extends HttpServlet {
     private EvaluationService evaluationService = new EvaluationService();
+    private CourseService courseService  = new CourseService();
     private static final long serialVersionUID = 1L;
 
     /**
@@ -30,7 +32,7 @@ public class EvaluationServlet extends HttpServlet {
     protected void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer userId = Integer.valueOf(request.getParameter("userId"));
         Integer courseId = Integer.valueOf(request.getParameter("courseId"));
-        Integer star = Integer.valueOf(request.getParameter("star"));
+        int star = Integer.parseInt(request.getParameter("star"));
         switch (star){
             case 1:star=1;break;
             case 2:star=2;break;
@@ -40,7 +42,7 @@ public class EvaluationServlet extends HttpServlet {
             default:break;
         }
         String content = request.getParameter("content");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = simpleDateFormat.format(new Date());
         Integer learned = Integer.valueOf(request.getParameter("learned"));
 
@@ -53,7 +55,7 @@ public class EvaluationServlet extends HttpServlet {
         eva.setSupport(0);
         eva.setLearned(learned);
 
-        int result = evaluationService.add(eva);
+        int result = evaluationService.add(eva) & courseService.updateCourse(courseId,star);
         PrintWriter out = response.getWriter();
         if (result == 1) {
             HttpSession session = request.getSession();
