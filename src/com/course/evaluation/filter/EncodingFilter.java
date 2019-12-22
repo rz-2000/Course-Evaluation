@@ -2,6 +2,7 @@ package com.course.evaluation.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -29,10 +30,18 @@ public class EncodingFilter implements Filter {
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        response.setContentType("text/html;charset=utf-8");
-        request.setCharacterEncoding("utf-8");
+        HttpServletRequest req = (HttpServletRequest)request;
+        HttpServletResponse res = (HttpServletResponse) response;
 
-        HttpServletRequest req = (HttpServletRequest) request;
+        String url = req.getRequestURI();
+        System.out.println("url:" +url);
+
+        if(url.indexOf(".css")>0||url.indexOf(".js")>0||url.indexOf(".png")>0) {
+            chain.doFilter(request, response);
+            return;
+        }
+        response.setContentType("text/html;text/html; charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (req.getMethod().equals("GET")) {
             EncodeRequest encodeRequest = new EncodeRequest(req);
             chain.doFilter(encodeRequest, response);
