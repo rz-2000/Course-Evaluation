@@ -108,6 +108,7 @@
             <div class="m-auto">
                 <form action="${pageContext.request.contextPath}/IndexServlet?method=search" method="post">
                     <input type="text" class="search-input" placeholder="请输入您想搜索的课程">
+                    <input name="id" type="hidden" value="${user.id}">
                     <input type="submit" class="search-button" value="搜索">
                 </form>
             </div>

@@ -6,6 +6,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Course-Evaluation" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="JUnit4" module-name="Course-Evaluation" />
+          <element id="library" level="module" name="JUnit5.4" module-name="Course-Evaluation" />
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="Course-Evaluation/web/Web" />
     </root>
