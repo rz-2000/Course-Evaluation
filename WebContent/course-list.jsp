@@ -94,7 +94,7 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info&username=${user.username}">个人中心</a></li>
                 <div class="line"></div>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
@@ -108,6 +108,7 @@
             <div class="m-auto">
                 <form action="${pageContext.request.contextPath}/IndexServlet?method=search" method="post">
                     <input type="text" class="search-input" placeholder="请输入您想搜索的课程">
+                    <input name="id" type="hidden" value="${user.id}">
                     <input type="submit" class="search-button" value="搜索">
                 </form>
             </div>
@@ -117,9 +118,9 @@
 
 <div class="container">
     <div class="search-hint">
-        <button class="btn btn-primary">专业课</button>
-        <button class="btn btn-info">公共基础课</button>
-        <button class="btn btn-secondary">通识课</button>
+        <input type="button" class="btn btn-primary" value="专业课" onclick="window.location='${pageContext.request.contextPath}/CourseServlet?method=list&type=1'">
+        <input type="button" class="btn btn-info" value="公共基础课" onclick="window.location='${pageContext.request.contextPath}/CourseServlet?method=list&type=2'">
+        <input type="button" class="btn btn-secondary" value="通识课" onclick="window.location='${pageContext.request.contextPath}/CourseServlet?method=list&type=3'">
     </div>
     <hr>
     <div style="margin: 50px 0">
@@ -130,66 +131,14 @@
                 <th>评分</th>
                 <th>最新评价</th>
             </tr>
+            <c:forEach items="${courseVoList}" var="item">
             <tr>
-                <td>计算机网络</td>
-                <td><a href="">蒋若冰</a></td>
-                <td value="9" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
+                <td><a href="${pageContext.request.contextPath}/CourseServlet?method=showCourse&id=${item.id}">${item.name}</a></td>
+                <td>${item.teacher}</td>
+                <td value="${item.score}" class="score"></td>
+                <td>${item.newEva}</td>
             </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">洪峰</a></td>
-                <td value="8" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
-            <tr>
-                <td>计算机网络</td>
-                <td><a href="">唐瑞春</a></td>
-                <td value="7" class="score"></td>
-                <td>哇哈哈啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</td>
-            </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
@@ -226,4 +175,4 @@
     }
 </script>
 </body>
-</html
+</html>

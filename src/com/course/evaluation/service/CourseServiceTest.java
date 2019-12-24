@@ -1,18 +1,21 @@
 package com.course.evaluation.service;
 
 import com.course.evaluation.po.Course;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author 曾哲
+ * @date 2019/12/19
+ * @description 提交评论后更新课程信息的方法的测试类
  */
 class CourseServiceTest {
     private CourseService courseService = new CourseService();
 
-    @org.junit.jupiter.api.Test
+    @Test
     void updateCourse() {
+        //待更新的课程id
         int courseId = 1;
+        //提交评论的评星
         int star = 5;
         System.out.println("course id:"+courseId);
         System.out.println("课程信息更新前：");

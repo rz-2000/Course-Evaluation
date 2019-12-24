@@ -1,9 +1,11 @@
 package com.course.evaluation.servlet;
+import java.nio.charset.StandardCharsets;
 import	java.util.ArrayList;
 
 import com.course.evaluation.po.Course;
 import com.course.evaluation.po.User;
 import com.course.evaluation.service.CourseService;
+import com.course.evaluation.vo.CourseVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +34,21 @@ public class CourseServlet extends HttpServlet {
     }
 
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        System.out.println("type:"+type);
+        if (type==null || type.equals("")){
+            type="专业课";
+        }else {
+            int typeInt = Integer.parseInt(type);
+            switch (typeInt){
+                case 1:type="专业课";break;
+                case 2:type="公共基础课";break;
+                case 3:type="通识课";break;
+                default:break;
+            }
+        }
+        List<CourseVo> courseVoList = courseService.courseVoList(type);
+        request.setAttribute("courseVoList", courseVoList);
         request.getRequestDispatcher("course-list.jsp").forward(request, response);
     }
 
