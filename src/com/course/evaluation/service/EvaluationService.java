@@ -23,8 +23,8 @@ public class EvaluationService {
         return evaluationDao.findByPage(page);
     }
     //show
-    public List<Evaluation> findAllEvaluationById(){
-        return evaluationDao.findAllEvaluationById();
+    public List<Evaluation> findAllEvaluationById(Integer id){
+        return evaluationDao.findAllEvaluationById(id);
     }
     // 查询一共有多少条
     public int count(Integer courseId) {

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+</head>
     <meta charset="utf-8">
 
   
@@ -176,15 +176,16 @@
 			</div>
 		</div>
 
-		<c:forEach items="${evaluationPage}" var="item">
+
 		<div class="container margin_60_35">
 			<div class="row">
+				<c:forEach items="${evaluationList}" var="item">
 				<c: class="col-lg-8">
 					<div class="review_card">
 						<div class="row">
 							<div class="col-md-2 user_info">
 									<figure><img src="img/avatar1.jpg" alt=""></figure>
-								<h5><a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo}">${evaluation.userId}</a></h5>
+								<h5><a href="${pageContext.request.contextPath}/EvaluationServlet?method=allInfo&id=${item.id}}">${item.userId}</a></h5>
 							</div>
 							<div class="col-md-10 review_content">
 								<div class="clearfix add_bottom_15">
@@ -194,13 +195,13 @@
 										<i class="icon_star"></i>
 										<i class="icon_star"></i>
 										<i class="icon_star"></i>
-										<em><a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo">${evaluation.star}</a></em>
+										<em>${item.star}</em>
 									</span>
-									<em>Published ${evaluation.time}</em>
+                                    <em>Published ${item.time}</em>
 								</div>
-								<p>${evaluation.content}</p>
+								<p>${item.content}</p>
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/EvaluationServlet?method=addSupport&username=${user.username}"><i class="icon_like_alt"></i><span>赞</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/EvaluationServlet?method=addSupport&id=${item.id}"><i class="icon_like_alt"></i><span>赞</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -209,21 +210,12 @@
 					</c:forEach>					<!-- /review_card -->
 
 					<!-- /review_card -->
-					<div class="pagination__wrapper add_bottom_15">
-						<ul class="pagination">
-							<li><a href="#0" class="prev" title="previous page">&#10094;</a></li>
-							<li><a href="#0" class="active">1</a></li>
-							<li><a href="#0">2</a></li>
-							<li><a href="#0">3</a></li>
-							<li><a href="#0">4</a></li>
-							<li><a href="#0" class="next" title="next page">&#10095;</a></li>
-						</ul>
-					</div>
+
 					<!-- /pagination -->
 				</div>
 			</div>
 			<!-- /row -->
-		</div>
+
 		<!-- /container -->
 
 	</main>

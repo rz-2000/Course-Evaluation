@@ -121,15 +121,16 @@ public class EvaluationDao {
         return result;
     }
 
-    public List<Evaluation> findAllEvaluationById(){
+    public List<Evaluation> findAllEvaluationById(Integer id){
         Connection conn = DBUtil.getConn();
-        String sql = "select * from evaluation order by support,id desc ;";
+        String sql = "select * from evaluation where id =? order by support,id desc ;";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         Evaluation evaluation = null;
         ArrayList<Evaluation> evaluationList = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
             rSet = pstmt.executeQuery();
             while (rSet.next()) {
                 evaluation = new Evaluation();

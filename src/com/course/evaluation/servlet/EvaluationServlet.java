@@ -2,9 +2,12 @@ package com.course.evaluation.servlet;
 
 import com.course.evaluation.po.Course;
 import com.course.evaluation.po.Evaluation;
+import com.course.evaluation.po.Page;
 import com.course.evaluation.po.User;
 import com.course.evaluation.service.CourseService;
 import com.course.evaluation.service.EvaluationService;
+import com.course.evaluation.service.UserService;
+import com.course.evaluation.util.PageUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +25,7 @@ import java.util.List;
 public class EvaluationServlet extends HttpServlet {
     private EvaluationService evaluationService = new EvaluationService();
     private CourseService courseService = new CourseService();
+    private UserService userService = new UserService();
     private static final long serialVersionUID = 1L;
 
     /**
@@ -83,19 +87,18 @@ public class EvaluationServlet extends HttpServlet {
 
     }
 
-    protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idStr = request.getParameter("courseId");
-        Integer courseId = Integer.parseInt(idStr);
-        System.out.println("courseId:" + courseId);
+    protected void showEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        Integer id = Integer.parseInt( request.getParameter("id"));
+        //System.out.println("courseId:" + id);
         List<Evaluation> evaluationList;
 
-        evaluationList = evaluationService.findAllEvaluationById();
-
+        evaluationList = evaluationService.findAllEvaluationById(id);
         request.setAttribute("evaluationList", evaluationList);
 
-        Course course = courseService.findById(courseId);
-        request.setAttribute("courseId", courseId);
-        request.setAttribute("course", course);
+        User user = userService.findById(userId);
+        request.setAttribute("evaluationList", evaluationList);
+        request.setAttribute("user", user);
         request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }
 
@@ -103,16 +106,45 @@ public class EvaluationServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Evaluation evaluation = evaluationService.findById(id);
         evaluation.setSupport(evaluation.getSupport() + 1);
-        int result = evaluationService.chg(id, evaluation);
+        int result = evaluationService.addSupport(evaluation);
         PrintWriter out = response.getWriter();
         if (result == 1) {
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
-                    + "/ReviewPageServlet?method=allInfo&id=" + evaluation.getCourseId() + "';" + "</script>");
+                    + "/EvaluationServlet?method=allInfo&id=" + evaluation.getId()+ "';" + "</script>");
         } else {
             out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
-                    + "/ReviewPageServlet?method=allInfo&id=" + evaluation.getCourseId() + "';" + "</script>");
+                    + "/EvaluationServlet?method=allInfo&id=" + evaluation.getId() + "';" + "</script>");
         }
     }
+
+    protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String currentPageStr = request.getParameter("currentPage");
+        String courseIdStr = request.getParameter("id");
+        int id = Integer.parseInt(courseIdStr);
+        Course course = courseService.findById(id);
+        int currentPage;
+        // 如果没有currentPage,默认查询第一页
+        if (currentPageStr == null) {
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(currentPageStr);
+        }
+        // 总条数
+        int totalCount = evaluationService.count(id);
+        // 创建一个Page对象 1.每页显示的条数 2.总条数 3.页数
+        Page<Evaluation> page = PageUtil.createPage(5, (int) totalCount, currentPage);
+        if (currentPage>page.getTotalPage() && currentPage!=1) {
+            currentPage=page.getTotalPage();
+        }
+        page = PageUtil.createPage(5, (int) totalCount, currentPage);
+        page = evaluationService.findByPage(page);
+        request.setAttribute("course", course);
+        // 把page保存到域中
+        request.setAttribute("evaluationPage", page);
+        // 转发到review-page.jsp
+        request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -127,10 +159,13 @@ public class EvaluationServlet extends HttpServlet {
         String method = request.getParameter("method");
         if ("add".equals(method)) {
             add(request, response);
-            //} else if ("chg".equals(method)) {
-            //  chg(request, response);
+            } else if ("allInfo".equals(method)) {
+              allInfo(request, response);
         } else if ("addSupport".equals(method)) {
             addSupport(request, response);
+        } else if ("showEvaluation".equals(method)) {
+            showEvaluation(request, response);
+
         }
 
     }
