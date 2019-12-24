@@ -19,7 +19,7 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-    <!--<filter>
+    <filter>
         <display-name>UserFilter</display-name>
         <filter-name>UserFilter</filter-name>
         <filter-class>com.course.evaluation.filter.UserFilter</filter-class>
@@ -35,7 +35,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>-->
+    </filter-mapping>
     <servlet>
         <description></description>
         <display-name>UserServlet</display-name>

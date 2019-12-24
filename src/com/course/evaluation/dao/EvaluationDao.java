@@ -123,7 +123,7 @@ public class EvaluationDao {
 
     public List<Evaluation> findAllEvaluationById(){
         Connection conn = DBUtil.getConn();
-        String sql = "select * from evaluation order by id desc ;";
+        String sql = "select * from evaluation order by support,id desc ;";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         Evaluation evaluation = null;
@@ -264,6 +264,36 @@ public class EvaluationDao {
             pstmt.setInt(1,evaluation.getSupport());
             pstmt.setInt(2,evaluation.getId());
             result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            DBUtil.closePstmt(pstmt);
+            DBUtil.closeConn(conn);
+        }
+        return result;
+    }
+
+    /**
+     * 最新评论
+     */
+    public String findContentByCourseId(Integer courseId) {
+        //获取连接
+        Connection conn = DBUtil.getConn();
+        //sql语句
+        String sql = "select content from evaluation where course_id=? order by time desc";
+        PreparedStatement pstmt = null;
+        ResultSet rSet = null;
+        String result = null;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,courseId);
+            rSet = pstmt.executeQuery();
+            if (!rSet.next()){
+                result = "无";
+            }else {
+                result = rSet.getString(0);
+            }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

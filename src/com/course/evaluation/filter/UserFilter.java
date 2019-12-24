@@ -52,8 +52,7 @@ public class UserFilter implements Filter {
         String path = req.getServletPath();
         // 判断用户是否登录
         if (user != null || path.equals(indexPath) || path.endsWith(".css") || path.endsWith(".js")
-                || path.endsWith(".gif") || path.endsWith(".jpg") || path.equals("/index.jsp") || path.equals("/register.jsp")
-        || path.equals("/reviews-page.jsp")){
+                || path.endsWith(".gif") || path.endsWith(".jpg") || path.equals("/register.jsp") || path.indexOf("Servlet")>0){
             chain.doFilter(request, response);
         } else {
             req.getRequestDispatcher("/login.jsp").forward(request, response);

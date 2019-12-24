@@ -36,7 +36,8 @@ public class EncodingFilter implements Filter {
         String url = req.getRequestURI();
         System.out.println("url:" +url);
 
-        if(url.indexOf(".css")>0||url.indexOf(".js")>0||url.indexOf(".png")>0) {
+        if(url.indexOf(".css")>0||url.indexOf(".js")>0||url.indexOf(".png")>0||url.indexOf(".jpg")>0||url.indexOf(".svg")>0
+        ||url.indexOf(".woff")>0||url.indexOf(".ttf")>0||url.indexOf(".ico")>0) {
             chain.doFilter(request, response);
             return;
         }

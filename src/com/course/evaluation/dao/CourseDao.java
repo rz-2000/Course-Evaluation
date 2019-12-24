@@ -2,6 +2,7 @@ package com.course.evaluation.dao;
 
 import com.course.evaluation.po.Course;
 import com.course.evaluation.util.DBUtil;
+import com.course.evaluation.vo.CourseVo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -188,5 +189,34 @@ public class CourseDao {
             DBUtil.closeConn(conn);
         }
         return result;
+    }
+
+    public List<Course> findAllByType(String type){
+        Connection conn = DBUtil.getConn();
+        String sql = "select id,name,teacher,type,score from course where type=?";
+        PreparedStatement pstmt = null;
+        ResultSet rSet = null;
+        Course course = null;
+        ArrayList<Course> courseList = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,type);
+            rSet = pstmt.executeQuery();
+            while (rSet.next()) {
+                course = new Course();
+                course.setId(rSet.getInt(1));
+                course.setName(rSet.getString(2));
+                course.setTeacher(rSet.getString(3));
+                course.setType(rSet.getString(4));
+                course.setScore(rSet.getDouble(5));
+                courseList.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closePstmt(pstmt);
+            DBUtil.closeConn(conn);
+        }
+        return courseList;
     }
 }
