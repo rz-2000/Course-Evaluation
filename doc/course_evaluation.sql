@@ -41,12 +41,16 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES (1, '课程1', '类型1', '专业1', '教师1',1, 2, 3, 4, 5, 15, 4.7, 'images/temp.jpg');
-INSERT INTO `course` VALUES (2, '课程2', '类型2', '专业2', '教师2', 5, 4, 3, 2, 1, 15, 7.3, 'images/temp.jpg');
-INSERT INTO `course` VALUES (3, '课程3', '类型3', '专业3', '教师3', 8, 3, 3, 3, 3, 20, 7.0, 'images/temp.jpg');
-INSERT INTO `course` VALUES (4, '课程4', '类型4', '专业4', '教师4', 10, 9, 3, 1, 2, 25, 7.9, 'images/temp.jpg');
-INSERT INTO `course` VALUES (5, '课程5', '类型5', '专业5', '教师5', 2, 1, 0, 0, 0, 3, 9.3, 'images/temp.jpg');
-
+INSERT INTO `course` VALUES (1, '计算机网络', '专业课', '计算机科学与技术', '唐瑞春',1, 2, 3, 4, 5, 15, 4.7, 'images/computerNetwork.jpg');
+INSERT INTO `course` VALUES (2, '数据结构', '专业课', '计算机科学与技术', '刘超', 5, 4, 3, 2, 1, 15, 7.3, 'images/alpha.jpg');
+INSERT INTO `course` VALUES (3, '操作系统', '专业课', '计算机科学与技术', '窦金凤', 8, 3, 3, 3, 3, 20, 7.0, 'images/OS.jpg');
+INSERT INTO `course` VALUES (4, '编译原理', '专业课', '计算机科学与技术', '林喜军', 10, 9, 3, 1, 2, 25, 7.9, 'images/bianyi.jpg');
+INSERT INTO `course` VALUES (5, '软件工程', '专业课', '计算机科学与技术', '高峰', 2, 1, 0, 0, 0, 3, 9.3, 'images/software.jpg');
+INSERT INTO `course` VALUES (6, '高等数学', '公共基础课', '全专业', '林敏',1, 2, 3, 4, 5, 15, 4.7, 'images/math.jpg');
+INSERT INTO `course` VALUES (7, '大学物理', '公共基础课', '全专业', '王术宽', 5, 4, 3, 2, 1, 15, 7.3, 'images/wuli.jpg');
+INSERT INTO `course` VALUES (8, '高级口语', '公共基础课', '全专业', '李诞', 8, 3, 3, 3, 3, 20, 7.0, 'images/oral.jpg');
+INSERT INTO `course` VALUES (9, '家庭社会学', '通识课', '全专业', '王鹏', 10, 9, 3, 1, 2, 25, 7.9, 'images/family.jpg');
+INSERT INTO `course` VALUES (10, '初级游泳', '公共基础课', '全专业', '初奕剑', 2, 1, 0, 0, 0, 3, 9.3, 'images/swim.jpg');
 -- ----------------------------
 -- Table structure for evaluation
 -- ----------------------------
@@ -86,5 +90,6 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, '1', '1', '张三', '17020001000', '计算机科学与技术', 2017, 1, '17811112222', 'test@test.com', 'images/duck.jpg');
+INSERT INTO `user` VALUES (2, '17020031015', '17020031015', '高老师的小迷弟', '17020001015', '计算机科学与技术', 2017, 1, '17811112222', 'test@test.com', 'images/xixi.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;
