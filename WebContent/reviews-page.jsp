@@ -240,7 +240,7 @@
     <script src="js/common_scripts.js"></script>
 	<script src="js/functions.js"></script>
 	<script src="assets/validate.js"></script>
-
+	<script src="js/tools.js"></script>
 </body>
 <footer>
     <div class="line"></div>
