@@ -61,5 +61,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.50" level="application_server_libraries" />
+    <orderEntry type="library" name="jspstmartupload" level="project" />
   </component>
 </module>
