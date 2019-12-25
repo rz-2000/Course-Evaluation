@@ -270,10 +270,11 @@
             <div style="clear: both">
              <hr>
              </div>
-            <form action="" id="submit-img">
-                <input type="file" onchange="showImg(this)">
+            <form action="${pageContext.request.contextPath}/UserServlet?method=profile" id="submit-img" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" onchange="showImg(this)">
                 <img src="images/add.png" alt="" id="img">
-                <button class="btn btn-primary" type="submit">上传</button>
+                <input type="hidden" value="${user.id}" name="id">
+                <input class="btn btn-primary" type="submit" value="上传">
             </form>
         </div>
     </div>

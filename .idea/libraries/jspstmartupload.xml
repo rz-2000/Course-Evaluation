@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jspstmartupload">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jspstmartupload.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

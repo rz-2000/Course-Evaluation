@@ -3,13 +3,20 @@ package com.course.evaluation.servlet;
 import com.course.evaluation.po.User;
 import com.course.evaluation.service.UserService;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+
+import com.jspsmart.upload.SmartFile;
+import com.jspsmart.upload.SmartRequest;
+import com.jspsmart.upload.SmartUpload;
+import com.jspsmart.upload.SmartUploadException;
 
 /**
  * @author 曾哲
@@ -143,6 +150,48 @@ public class UserServlet extends HttpServlet {
         request.getRequestDispatcher("info.jsp").forward(request, response);
     }
 
+    /**
+     * 修改头像
+     */
+    protected void updateProfliePhoto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        // 新建SmartUpload对象
+        SmartUpload smartUpload = new SmartUpload();
+        ServletConfig config = this.getServletConfig();
+        // 初始化配置
+        smartUpload.initialize(config, request, response);
+        // 获取请求对象
+        SmartRequest req = smartUpload.getRequest();
+        // 上传图片
+        try {
+            smartUpload.upload();
+            SmartFile picFile = smartUpload.getFiles().getFile(0);
+            // 获取文件名
+            picFile.getFileName();
+            // 获取请求参数
+            String idStr = req.getParameter("id");
+            String profilePhoto = "images/" + picFile.getFileName();
+            System.out.println("profilePhoto:"+profilePhoto);
+            int id = Integer.parseInt(idStr);
+            User user = userService.findById(id);
+            user.setProfilePhoto(profilePhoto);
+            int result = userService.update(id, user);
+            PrintWriter out = response.getWriter();
+            if (result == 1) {
+                smartUpload.save("images/");
+                out.print("<script>" + "alert('修改成功');window.location.href='" + request.getContextPath()
+                        + "/UserServlet?method=info&username="+user.getUsername()+"'" + "</script>");
+            } else {
+                out.print("<script>" + "alert('修改失败，请稍后再试');window.location.href='" + request.getContextPath()
+                        + "/UserServlet?method=info&username="+user.getUsername()+"'" + "</script>");
+            }
+        } catch (SmartUploadException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -162,6 +211,8 @@ public class UserServlet extends HttpServlet {
             reg(request, response);
         } else if ("info".equals(method)){
             info(request, response);
+        } else if ("profile".equals(method)){
+            updateProfliePhoto(request, response);
         }
     }
 }
