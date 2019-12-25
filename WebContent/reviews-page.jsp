@@ -54,7 +54,7 @@
         <div>
             <ul id="drop-list">
                 <div class="line"></div>
-                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info">个人中心</a></li>
+                <li><a href="${pageContext.request.contextPath}/UserServlet?method=info&username=${user.username}">个人中心</a></li>
                 <div class="line"></div>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
             </ul>
@@ -177,11 +177,17 @@
 		</div>
 
 
+		<div class="m-auto">
+			<form action="${pageContext.request.contextPath}/EvaluationServlet?method=showEvaluation" method="post">
+				<input name="id" value="${course.id}" type="hidden">
+				<input name="userId" value="${user.id}" type="hidden">
+			</form>
+		</div>
 		<div class="container margin_60_35">
 			<div class="row">
-				<c:forEach items="${evaluationList}" var="item">
 				<c: class="col-lg-8">
 					<div class="review_card">
+						<c:forEach items="${evaluationList}" var="item" >
 						<div class="row">
 							<div class="col-md-2 user_info">
 									<figure><img src="img/avatar1.jpg" alt=""></figure>
@@ -205,12 +211,12 @@
 								</ul>
 							</div>
 						</div>
-						<!-- /row -->
+						</c:forEach>
 					</div>
-					</c:forEach>					<!-- /review_card -->
 
+					<!-- /row -->
 					<!-- /review_card -->
-
+				</c:>
 					<!-- /pagination -->
 				</div>
 			</div>

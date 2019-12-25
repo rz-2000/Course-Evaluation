@@ -89,7 +89,7 @@ public class EvaluationServlet extends HttpServlet {
 
     protected void showEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer userId = Integer.parseInt(request.getParameter("userId"));
-        Integer id = Integer.parseInt( request.getParameter("id"));
+        Integer id = Integer.valueOf( request.getParameter("id"));
         //System.out.println("courseId:" + id);
         List<Evaluation> evaluationList;
 
@@ -97,7 +97,6 @@ public class EvaluationServlet extends HttpServlet {
         request.setAttribute("evaluationList", evaluationList);
 
         User user = userService.findById(userId);
-        request.setAttribute("evaluationList", evaluationList);
         request.setAttribute("user", user);
         request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }

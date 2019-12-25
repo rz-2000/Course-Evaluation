@@ -123,7 +123,7 @@ public class EvaluationDao {
 
     public List<Evaluation> findAllEvaluationById(Integer id){
         Connection conn = DBUtil.getConn();
-        String sql = "select * from evaluation where id =? order by support,id desc ;";
+        String sql = "select * from evaluation where course_id =? order by id desc ;";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
         Evaluation evaluation = null;
