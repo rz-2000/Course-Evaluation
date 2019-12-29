@@ -83,7 +83,7 @@
 <header id="navigator">
     <div class="nav-left">
         <span class="nav_name">海大优选</span>
-        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo" >首页</a></span>
+        <span class="nav_list"><a href="${pageContext.request.contextPath}/IndexServlet?method=allInfo&username=${user.username}">首页</a></span>
         <span class="nav_list"><a href="${pageContext.request.contextPath}/CourseServlet?method=list">课程</a></span>
     </div>
     <div class="nav-right">
