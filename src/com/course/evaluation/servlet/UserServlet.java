@@ -74,7 +74,6 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String idStr = request.getParameter("id");
         int id = Integer.parseInt(idStr);
@@ -109,7 +108,8 @@ public class UserServlet extends HttpServlet {
         user.setSex(sex);
         user.setPhoneNumber(phoneNumber);
         user.setEmail(email);
-//        user.setProfilePhoto(profilePhoto);
+        user.setProfilePhoto("images/duck.jpg");
+
         int result = userService.update(id, user);
         PrintWriter out = response.getWriter();
         if (result == 1) {
@@ -124,7 +124,6 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
