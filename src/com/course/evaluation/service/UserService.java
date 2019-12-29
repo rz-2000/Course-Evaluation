@@ -28,7 +28,7 @@ public class UserService {
     public int update(int id, User user) {
         User a = userDao.findByUsername(user.getUsername());
         if (a != null && a.getId() != id) {
-            return -1;
+            return 0;
         }
         return userDao.update(id, user);
     }

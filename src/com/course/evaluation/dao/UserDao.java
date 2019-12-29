@@ -20,7 +20,7 @@ public class UserDao {
         //获取连接
         Connection conn = DBUtil.getConn();
         //sql语句
-        String sql = "insert into user(username,password,real_name,number) values(?,?,?,?)";
+        String sql = "insert into user(username,password,real_name,number,major,grade,sex,phone_number,email,profile_photo) values(?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = null;
         int result = 0;
         try {
@@ -29,6 +29,12 @@ public class UserDao {
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getRealName());
             pstmt.setString(4, user.getNumber());
+            pstmt.setString(5, user.getMajor());
+            pstmt.setInt(6, user.getGrade());
+            pstmt.setInt(7, user.getSex());
+            pstmt.setString(8, user.getPhoneNumber());
+            pstmt.setString(9, user.getEmail());
+            pstmt.setString(10, user.getProfilePhoto());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

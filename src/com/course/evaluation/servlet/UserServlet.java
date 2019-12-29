@@ -37,6 +37,8 @@ public class UserServlet extends HttpServlet {
 
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         // 获取请求参数
         String name = request.getParameter("username");
         String pwd = request.getParameter("password");
@@ -72,6 +74,8 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         String idStr = request.getParameter("id");
         int id = Integer.parseInt(idStr);
         String username = request.getParameter("username");
@@ -86,7 +90,8 @@ public class UserServlet extends HttpServlet {
             case 3:grade=2017;break;
             case 4:grade=2018;break;
             case 5:grade=2019;break;
-            default:break;
+            default:
+                break;
         }
         Integer sex = Integer.valueOf(request.getParameter("sex"));
         String phoneNumber = request.getParameter("phoneNumber");
@@ -119,6 +124,8 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String realName = request.getParameter("realName");
@@ -129,6 +136,12 @@ public class UserServlet extends HttpServlet {
         user.setPassword(password);
         user.setRealName(realName);
         user.setNumber(number);
+        user.setMajor("未填写");
+        user.setGrade(2016);
+        user.setSex(1);
+        user.setPhoneNumber("未填写");
+        user.setEmail("未填写");
+        user.setProfilePhoto("images/duck.jpg");
 
         int result = userService.reg(user);
         PrintWriter out = response.getWriter();
