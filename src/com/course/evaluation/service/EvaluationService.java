@@ -32,10 +32,6 @@ public class EvaluationService {
     }
     //修改
     public int chg(int id,Evaluation evaluation) { return evaluationDao.chg(id, evaluation); }
-    //排行榜
-    public ArrayList<Evaluation> ordersRank() {
-        return evaluationDao.ordersRank();
-    }
 
     public int addSupport(Evaluation evaluation){
         return evaluationDao.update(evaluation);

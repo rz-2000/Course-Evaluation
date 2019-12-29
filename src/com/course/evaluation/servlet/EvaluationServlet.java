@@ -79,33 +79,20 @@ public class EvaluationServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.removeAttribute("evaluation");
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
-                    + "/ReviewPageServlet?method=allInfo&id=" + courseId + "';" + "</script>");
+                    + "/EvaluationServlet?method=showEvaluation&courseId=" + courseId + "';" + "</script>");
         } else {
             out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
-                    + "/ReviewPageServlet?method=allInfo&id=" + courseId + "';" + "</script>");
+                    + "/EvaluationServlet?method=showEvaluation&courseId=" + courseId + "';" + "</script>");
         }
 
     }
 
-    protected void showEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer userId = Integer.parseInt(request.getParameter("userId"));
-        Integer id = Integer.valueOf( request.getParameter("id"));
-        //System.out.println("courseId:" + id);
-        List<Evaluation> evaluationList;
-
-        evaluationList = evaluationService.findAllEvaluationById(id);
-        request.setAttribute("evaluationList", evaluationList);
-
-        User user = userService.findById(userId);
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
-    }
 
     protected void addSupport(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.valueOf(request.getParameter("id"));
         Evaluation evaluation = evaluationService.findById(id);
         evaluation.setSupport(evaluation.getSupport() + 1);
-        int result = evaluationService.addSupport(evaluation);
+        int result = evaluationService.addSupport(evaluation) ;
         PrintWriter out = response.getWriter();
         if (result == 1) {
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
@@ -114,34 +101,6 @@ public class EvaluationServlet extends HttpServlet {
             out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
                     + "/EvaluationServlet?method=allInfo&id=" + evaluation.getId() + "';" + "</script>");
         }
-    }
-
-    protected void allInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String currentPageStr = request.getParameter("currentPage");
-        String courseIdStr = request.getParameter("id");
-        int id = Integer.parseInt(courseIdStr);
-        Course course = courseService.findById(id);
-        int currentPage;
-        // 如果没有currentPage,默认查询第一页
-        if (currentPageStr == null) {
-            currentPage = 1;
-        } else {
-            currentPage = Integer.parseInt(currentPageStr);
-        }
-        // 总条数
-        int totalCount = evaluationService.count(id);
-        // 创建一个Page对象 1.每页显示的条数 2.总条数 3.页数
-        Page<Evaluation> page = PageUtil.createPage(5, (int) totalCount, currentPage);
-        if (currentPage>page.getTotalPage() && currentPage!=1) {
-            currentPage=page.getTotalPage();
-        }
-        page = PageUtil.createPage(5, (int) totalCount, currentPage);
-        page = evaluationService.findByPage(page);
-        request.setAttribute("course", course);
-        // 把page保存到域中
-        request.setAttribute("evaluationPage", page);
-        // 转发到review-page.jsp
-        request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }
 
 
@@ -158,12 +117,10 @@ public class EvaluationServlet extends HttpServlet {
         String method = request.getParameter("method");
         if ("add".equals(method)) {
             add(request, response);
-            } else if ("allInfo".equals(method)) {
-              allInfo(request, response);
+          //  } else if ("allInfo".equals(method)) {
+            //  allInfo(request, response);
         } else if ("addSupport".equals(method)) {
             addSupport(request, response);
-        } else if ("showEvaluation".equals(method)) {
-            showEvaluation(request, response);
 
         }
 

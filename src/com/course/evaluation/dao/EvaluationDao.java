@@ -121,28 +121,31 @@ public class EvaluationDao {
         return result;
     }
 
-    public List<Evaluation> findAllEvaluationById(Integer id){
+    public List<Evaluation> findAllEvaluationById(Integer courseId){
         Connection conn = DBUtil.getConn();
         String sql = "select * from evaluation where course_id =? order by id desc ;";
         PreparedStatement pstmt = null;
         ResultSet rSet = null;
+        //String result = null;
         Evaluation evaluation = null;
         ArrayList<Evaluation> evaluationList = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, courseId);
             rSet = pstmt.executeQuery();
+           
             while (rSet.next()) {
                 evaluation = new Evaluation();
                 evaluation.setId(rSet.getInt(1));
-                evaluation.setCourseId(rSet.getInt(2));
-                evaluation.setUserId(rSet.getInt(3));
-                evaluation.setContent(rSet.getString(4));
-                evaluation.setStar(rSet.getInt(5));
+                evaluation.setUserId(rSet.getInt(2));
+                evaluation.setCourseId(rSet.getInt(3));
+                evaluation.setStar(rSet.getInt(4));
+                evaluation.setContent(rSet.getString(5));
                 evaluation.setTime(rSet.getString(6));
                 evaluation.setSupport(rSet.getInt(7));
                 evaluation.setLearned(rSet.getInt(8));
                 evaluationList.add(evaluation);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -151,63 +154,6 @@ public class EvaluationDao {
             DBUtil.closeConn(conn);
         }
         return evaluationList;
-    }
-
-    public ArrayList<Evaluation> ordersRank() {
-//		String preTime=null;
-//		String currentTime=null;
-//		Date date = new Date();
-//		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		currentTime = sf.format(date);
-//		Calendar calendar = Calendar.getInstance();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(date);
-//		int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-//        if (w < 0)
-//            w = 7;
-//		calendar.add(Calendar.DATE, -w);
-//		preTime = sdf.format(calendar.getTime());
-//		preTime = preTime + " 23:59:59";
-        Connection conn = DBUtil.getConn();
-        String sql = "SELECT "
-                + "o.content,COUNT(o.support) "
-                + "FROM course m,evaluation o "
-                + "WHERE "
-                + "m.id=o.course_id"
-                + " GROUP BY o.content "
-                + "ORDER BY COUNT(o.support) DESC";
-//		String sql = "SELECT "
-//				+ "m.name,COUNT(o.menusum) "
-//				+ "FROM "
-//				+ "menus m,orders o "
-//				+ "WHERE "
-//				+ "m.id=o.menuid && o.times>'"
-//				+ preTime
-//				+ "' && o.times<'"
-//				+ currentTime
-//				+ "' GROUP BY m.name "
-//				+ "ORDER BY "
-//				+ "COUNT(o.menusum) DESC";
-        PreparedStatement pstmt = null;
-        Evaluation evaluation=null;
-        ResultSet rSet = null;
-        ArrayList<Evaluation> list = new ArrayList<Evaluation>();
-        try {
-            pstmt = conn.prepareStatement(sql);
-            evaluation = new Evaluation();
-            rSet = pstmt.executeQuery();
-            while (rSet.next()) {
-                evaluation = new Evaluation();
-                evaluation.setStar(rSet.getInt(1));
-                evaluation.setContent(rSet.getString(2));
-                list.add(evaluation);
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return list;
     }
 
     // 分页查询

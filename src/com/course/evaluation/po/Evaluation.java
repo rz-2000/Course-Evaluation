@@ -14,6 +14,9 @@ public class Evaluation {
     private Integer support;
     private Integer learned;
 
+    public Evaluation() {
+    }
+
     public Evaluation(Integer id, Integer userId, Integer courseId, Integer star, String content,
                       String time, Integer support,Integer learned) {
 
@@ -25,10 +28,6 @@ public class Evaluation {
         this.time = time;
         this.support = support;
         this.learned = learned;
-    }
-
-    public Evaluation() {
-
     }
 
     public Integer getId() {
