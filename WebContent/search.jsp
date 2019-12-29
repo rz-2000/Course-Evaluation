@@ -142,7 +142,7 @@
         <hr>
         <c:forEach items="${courseList}" var="item">
             <section class="search-list">
-                <a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}"><img src="images/temp.jpg" alt=""class="search-img"></a>
+                <a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}"><img src="${item.image}" alt="" class="search-img"></a>
                 <div class="search-detail">
                     <a href="${pageContext.request.contextPath}/ReviewPageServlet?method=allInfo&id=${item.id}" class="course-name">${item.name}</a>
                     <ul class="star-list">
