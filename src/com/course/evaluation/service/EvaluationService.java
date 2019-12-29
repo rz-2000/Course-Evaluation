@@ -7,6 +7,7 @@ import com.course.evaluation.dao.EvaluationDao;
 import com.course.evaluation.po.Course;
 import com.course.evaluation.po.Evaluation;
 import com.course.evaluation.po.Page;
+import com.course.evaluation.vo.EvaluationVo;
 
 public class EvaluationService {
     private EvaluationDao evaluationDao = new EvaluationDao();
@@ -23,8 +24,8 @@ public class EvaluationService {
         return evaluationDao.findByPage(page);
     }
     //show
-    public List<Evaluation> findAllEvaluationById(Integer id){
-        return evaluationDao.findAllEvaluationById(id);
+    public List<EvaluationVo> findAllEvaluationByCourseId(Integer courseId){
+        return evaluationDao.findAllEvaluationByCourseId(courseId);
     }
     // 查询一共有多少条
     public int count(Integer courseId) {

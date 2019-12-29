@@ -8,6 +8,7 @@ import com.course.evaluation.service.CourseService;
 import com.course.evaluation.service.EvaluationService;
 import com.course.evaluation.service.UserService;
 import com.course.evaluation.util.PageUtil;
+import com.course.evaluation.vo.EvaluationVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,12 +31,15 @@ public class ReviewPageServlet extends HttpServlet {
         //String currentPageStr = request.getParameter("currentPage");
         String courseIdStr = request.getParameter("id");
         int courseId = Integer.parseInt(courseIdStr);
-        int courseId1 = Integer.parseInt(courseIdStr);
         Course course = courseService.findById(courseId);
-        List<Evaluation> evaluationList;
-        evaluationList = evaluationService.findAllEvaluationById(courseId1);
+        List<EvaluationVo> evaluationList;
+        evaluationList = evaluationService.findAllEvaluationByCourseId(courseId);
         request.setAttribute("course", course);
         request.setAttribute("evaluationList", evaluationList);
+        for (EvaluationVo evaluation:evaluationList){
+            System.out.println("evaluation id:"+evaluation.getId());
+            System.out.println("evaluation content:"+evaluation.getContent());
+        }
         request.getRequestDispatcher("reviews-page.jsp").forward(request, response);
     }
 

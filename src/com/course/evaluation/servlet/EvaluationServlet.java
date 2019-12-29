@@ -37,28 +37,11 @@ public class EvaluationServlet extends HttpServlet {
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
         Integer userId = Integer.valueOf(request.getParameter("userId"));
         Integer courseId = Integer.valueOf(request.getParameter("courseId"));
         int star = Integer.parseInt(request.getParameter("star"));
-        switch (star) {
-            case 1:
-                star = 1;
-                break;
-            case 2:
-                star = 2;
-                break;
-            case 3:
-                star = 3;
-                break;
-            case 4:
-                star = 4;
-                break;
-            case 5:
-                star = 5;
-                break;
-            default:
-                break;
-        }
+
         String content = request.getParameter("content");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = simpleDateFormat.format(new Date());
@@ -79,27 +62,28 @@ public class EvaluationServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.removeAttribute("evaluation");
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
-                    + "/EvaluationServlet?method=showEvaluation&courseId=" + courseId + "';" + "</script>");
+                    + "/ReviewPageServlet?method=allInfo&id=" + courseId + "';" + "</script>");
         } else {
             out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
-                    + "/EvaluationServlet?method=showEvaluation&courseId=" + courseId + "';" + "</script>");
+                    + "/ReviewPageServlet?method=allInfo&id=" + courseId + "';" + "</script>");
         }
 
     }
 
 
     protected void addSupport(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.valueOf(request.getParameter("id"));
+        response.setContentType("text/html;charset=utf-8");
+        int id = Integer.parseInt(request.getParameter("id"));
         Evaluation evaluation = evaluationService.findById(id);
         evaluation.setSupport(evaluation.getSupport() + 1);
         int result = evaluationService.addSupport(evaluation) ;
         PrintWriter out = response.getWriter();
         if (result == 1) {
             out.print("<script>" + "alert('提交成功');" + "window.parent.location.href='" + request.getContextPath()
-                    + "/EvaluationServlet?method=allInfo&id=" + evaluation.getId()+ "';" + "</script>");
+                    + "/ReviewPageServlet?method=allInfo&id=" + evaluation.getCourseId() + "';" + "</script>");
         } else {
             out.print("<script>" + "alert('提交失败，请重试');" + "window.location.href='" + request.getContextPath()
-                    + "/EvaluationServlet?method=allInfo&id=" + evaluation.getId() + "';" + "</script>");
+                    + "/ReviewPageServlet?method=allInfo&id=" + evaluation.getCourseId() + "';" + "</script>");
         }
     }
 

@@ -12,6 +12,7 @@ import com.course.evaluation.po.Course;
 import com.course.evaluation.po.Page;
 import com.course.evaluation.po.Evaluation;
 import com.course.evaluation.util.DBUtil;
+import com.course.evaluation.vo.EvaluationVo;
 
 public class EvaluationDao {
 
@@ -83,8 +84,8 @@ public class EvaluationDao {
                 evaluation.setId(rSet.getInt(1));
                 evaluation.setUserId(rSet.getInt(2));
                 evaluation.setCourseId(rSet.getInt(3));
-                evaluation.setContent(rSet.getString(4));
-                evaluation.setStar(rSet.getInt(5));
+                evaluation.setStar(rSet.getInt(4));
+                evaluation.setContent(rSet.getString(5));
                 evaluation.setTime(rSet.getString(6));
                 evaluation.setSupport(rSet.getInt(7));
                 evaluation.setLearned(rSet.getInt(8));
@@ -121,30 +122,31 @@ public class EvaluationDao {
         return result;
     }
 
-    public List<Evaluation> findAllEvaluationById(Integer courseId){
+    public List<EvaluationVo> findAllEvaluationByCourseId(Integer courseId){
         Connection conn = DBUtil.getConn();
-        String sql = "select * from evaluation where course_id =? order by id desc ;";
+        String sql = "select e.id,e.course_id,u.username,u.profile_photo,e.star,e.content,e.time,e.support,e.learned from evaluation e, user u where course_id =? and e.user_id=u.id order by e.support desc ;";
         PreparedStatement pstmt = null;
-        ResultSet rSet = null;
+        ResultSet rSet;
         //String result = null;
-        Evaluation evaluation = null;
-        ArrayList<Evaluation> evaluationList = new ArrayList<>();
+        EvaluationVo evaluationVo;
+        ArrayList<EvaluationVo> evaluationVoList = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, courseId);
             rSet = pstmt.executeQuery();
            
             while (rSet.next()) {
-                evaluation = new Evaluation();
-                evaluation.setId(rSet.getInt(1));
-                evaluation.setUserId(rSet.getInt(2));
-                evaluation.setCourseId(rSet.getInt(3));
-                evaluation.setStar(rSet.getInt(4));
-                evaluation.setContent(rSet.getString(5));
-                evaluation.setTime(rSet.getString(6));
-                evaluation.setSupport(rSet.getInt(7));
-                evaluation.setLearned(rSet.getInt(8));
-                evaluationList.add(evaluation);
+                evaluationVo = new EvaluationVo();
+                evaluationVo.setId(rSet.getInt(1));
+                evaluationVo.setCourseId(rSet.getInt(2));
+                evaluationVo.setUsername(rSet.getString(3));
+                evaluationVo.setProfile(rSet.getString(4));
+                evaluationVo.setStar(rSet.getInt(5));
+                evaluationVo.setContent(rSet.getString(6));
+                evaluationVo.setTime(rSet.getString(7));
+                evaluationVo.setSupport(rSet.getInt(8));
+                evaluationVo.setLearned(rSet.getInt(9));
+                evaluationVoList.add(evaluationVo);
 
             }
         } catch (SQLException e) {
@@ -153,7 +155,7 @@ public class EvaluationDao {
             DBUtil.closePstmt(pstmt);
             DBUtil.closeConn(conn);
         }
-        return evaluationList;
+        return evaluationVoList;
     }
 
     // 分页查询

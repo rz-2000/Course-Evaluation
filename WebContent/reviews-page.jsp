@@ -1,4 +1,5 @@
-<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%> 
+<%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -181,13 +182,12 @@
 		<div class="container margin_60_35">
 			<div class="row">
 				<div class="col-lg-8">
+					<c:forEach items="${evaluationList}" var="item" >
 					<div class="review_card">
-						<c:forEach items="${evaluationList}" var="item" >
-							</section>
 						<div class="row">
 							<div class="col-md-2 user_info">
-									<figure><img src="img/avatar1.jpg" alt=""></figure>
-								<h5>${item.userId}</h5>
+									<figure><img src="${item.profile}" alt=""></figure>
+								<h5>${item.username}</h5>
 							</div>
 							<div class="col-md-10 review_content">
 								<div class="clearfix add_bottom_15">
@@ -203,14 +203,12 @@
 								</div>
 								<p>${item.content}</p>
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/EvaluationServlet?method=addSupport&id=${item.id}"><i class="icon_like_alt"></i><span>赞</span></a></li>
+									<li><a href="${pageContext.request.contextPath}/EvaluationServlet?method=addSupport&id=${item.id}"><i class="icon_like_alt"></i><span>${item.support}</span></a></li>
 								</ul>
 							</div>
 						</div>
-							</section>
-						</c:forEach>
 					</div>
-
+					</c:forEach>
 					<!-- /row -->
 					<!-- /review_card -->
 				</div>
